@@ -1,104 +1,120 @@
 import * as React from 'react';
-import { Grid, Card, CardMedia, CardContent, Typography, Box } from '@mui/material';
-import AnimatedProjectIcon from '../components/AnimatedProjectIcon';
+import { Grid, Card, CardContent, Typography, Box, Container, Chip, Tooltip, Zoom } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
+import LaunchIcon from '@mui/icons-material/Launch';
+
+const MotionCard = motion(Card);
+const MotionTypography = motion(Typography);
 
 export default function Projects() {
   const projects = [
     {
       id: 1,
       title: 'To-Do List',
-      description: 'A task management application to help organize and track daily tasks efficiently.',
+      description: 'A task management application to help organize and track daily tasks efficiently. Features incluyen task prioritization and status tracking.',
       color: '#00ff73',
       link: '#',
       icon: '✓',
+      tags: ['React', 'Local Storage']
     },
     {
       id: 2,
       title: 'Budgetly App',
-      description: 'A budget management application to track expenses, income, and financial goals.',
+      description: 'A budget management application to track expenses, income, and financial goals with visual charts.',
       color: '#3b82f6',
       link: '#',
       icon: '$',
+      tags: ['Next.js', 'Chart.js']
     },
     {
       id: 3,
       title: 'Fraud Detection',
-      description: 'A machine learning system using NumPy for detecting fraudulent transactions and patterns.',
+      description: 'A machine learning system using NumPy for detecting fraudulent transactions and patterns in banking data.',
       color: '#ff3b54',
       link: '#',
       icon: '🔍',
+      tags: ['Python', 'NumPy', 'ML']
     },
     {
       id: 4,
       title: 'Color Detection',
-      description: 'An image processing application that identifies and analyzes colors in images using computer vision.',
+      description: 'An image processing application that identifies and analyzes colors in images using computer vision techniques.',
       color: '#ff6b35',
       link: '#',
       icon: '🎨',
+      tags: ['OpenCV', 'Python']
     },
     {
       id: 5,
       title: 'Fitness Tracker',
-      description: 'A comprehensive fitness tracking application to monitor workouts, calories, and health metrics.',
+      description: 'A comprehensive fitness tracking application to monitor workouts, calories, and health metrics daily.',
       color: '#10b981',
       link: '#',
       icon: '💪',
+      tags: ['React Native', 'Firebase']
     },
     {
       id: 6,
       title: 'Support ChatBot',
-      description: 'An AI-powered chatbot for websites providing instant customer support and automated responses.',
+      description: 'An AI-powered chatbot for websites providing instant customer support and automated intelligent responses.',
       color: '#8b5cf6',
       link: '#',
       icon: '💬',
+      tags: ['NLP', 'Node.js']
     },
     {
       id: 7,
       title: 'Face Detection',
-      description: 'A real-time face detection system using OpenCV for identifying and tracking faces in images and video.',
+      description: 'A real-time face detection system using OpenCV for identifying and tracking faces in images and video streams.',
       color: '#06b6d4',
       link: '#',
       icon: '👤',
+      tags: ['OpenCV', 'AI']
     },
     {
       id: 8,
       title: 'Web Scraper',
-      description: 'An automated web scraping tool to extract and process data from websites efficiently.',
+      description: 'An automated web scraping tool to extract and process data from complex websites efficiently.',
       color: '#f59e0b',
       link: '#',
       icon: '🕷️',
+      tags: ['Python', 'BeautifulSoup']
     },
     {
       id: 9,
-      title: 'Financial Data Dashboard',
+      title: 'Financial Dashboard',
       description: 'An interactive dashboard for visualizing financial data, market trends, and analytics with real-time updates.',
       color: '#0ea5e9',
       link: '#',
       icon: '📊',
+      tags: ['React', 'D3.js']
     },
     {
       id: 10,
-      title: 'Income and Expense',
+      title: 'Income Tracker',
       description: 'A personal finance tracker to monitor income, expenses, and manage monthly budgets effectively.',
       color: '#ec4899',
       link: '#',
       icon: '💰',
+      tags: ['Vue', 'Express']
     },
     {
       id: 11,
       title: 'Weather Check',
-      description: 'A real-time weather application providing forecasts, current conditions, and weather alerts for any location.',
+      description: 'A real-time weather application providing forecasts, current conditions, and weather alerts globaly.',
       color: '#14b8a6',
       link: '#',
       icon: '🌤️',
+      tags: ['API', 'Leaflet']
     },
     {
       id: 12,
-      title: 'Calorie Tracker App',
+      title: 'Calorie Tracker',
       description: 'A nutrition tracking application to monitor daily calorie intake, macros, and achieve health goals.',
       color: '#f97316',
       link: '#',
       icon: '🍎',
+      tags: ['PWA', 'JavaScript']
     },
     {
       id: 13,
@@ -107,108 +123,193 @@ export default function Projects() {
       color: '#a855f7',
       link: '#',
       icon: '🖼️',
+      tags: ['NumPy', 'Python']
     },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1 }
+  };
+
   return (
-    <Box sx={{ py: 4, px: 3, width: '100%' }}>
-    
-      <Typography
-        variant="h1"
-        component="h1"
-        sx={{
-          mb: 4,
-          textAlign: 'center',
-          fontWeight: 700,
-          fontSize: {
-            xs: '2rem',
-            sm: '2.5rem',
-            md: '3rem',
-          },
-        }}
-      >
-        My Projects
-      </Typography>
-      
-      <Box sx={{ maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
-        <Grid container spacing={3} sx={{ width: '100%', margin: 0 }}>
-          {projects.map(project => (
-            <Grid item xs={12} sm={6} md={4} key={project.id} sx={{ 
-              display: 'flex',
-              flexBasis: '33.333333%',
-              maxWidth: '33.333333%',
-              '@media (max-width: 900px)': {
-                flexBasis: '50%',
-                maxWidth: '50%',
-              },
-              '@media (max-width: 600px)': {
-                flexBasis: '100%',
-                maxWidth: '100%',
-              }
-            }}>
-              <Card
-                sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  borderRadius: 2,
-                  backgroundColor: 'rgba(30, 41, 59, 0.5)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(246, 59, 72, 0.1)',
-                  '&:hover': {
-                    transform: 'translateY(-8px)',
-                    boxShadow: '0 12px 40px rgba(160, 240, 10, 0.2)',
-                    borderColor: 'rgba(59, 246, 84, 0.3)',
-                  },
-                }}
-              >
-                <Box
-                  onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
-                  sx={{ cursor: 'pointer', p: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                >
-                  <Box sx={{ 
-                    width: '100px', 
-                    height: '70px', 
-                    borderRadius: '12px', 
-                    background: project.color,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '2rem'
-                  }}>
-                    {project.icon}
-                  </Box>
-                </Box>
-              <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                <Typography
-                  variant="h6"
-                  component="h2"
-                  sx={{
-                    fontWeight: 700,
-                    color: project.color,
-                    mb: 1,
-                    transition: 'color 0.3s ease',
-                  }}
-                >
-                  {project.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: '#cbd5e1',
-                    lineHeight: 1.6,
-                    flexGrow: 1,
-                  }}
-                >
-                  {project.description}
-                </Typography>
-              </CardContent>
-              </Card>
+    <Box sx={{ 
+      py: { xs: 6, md: 10 }, 
+      minHeight: '100vh',
+      background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
+    }}>
+      <Container maxWidth="xl">
+        <Box sx={{ mb: 8, textAlign: 'center' }}>
+          <MotionTypography
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            variant="h2"
+            sx={{
+              fontWeight: 800,
+              fontSize: { xs: '2.5rem', md: '4rem' },
+              background: 'linear-gradient(to bottom, #fff 30%, #94a3b8)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              mb: 2
+            }}
+          >
+            Portfolio
+          </MotionTypography>
+          <MotionTypography
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            variant="h6"
+            sx={{ color: 'text.secondary', fontWeight: 400, maxWidth: '600px', mx: 'auto' }}
+          >
+            A collection of projects exploring web development, data science, and artificial intelligence.
+          </MotionTypography>
+        </Box>
+
+        <AnimatePresence>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            <Grid container spacing={4}>
+              {projects.map((project, index) => (
+                <Grid item xs={12} sm={6} lg={4} key={project.id}>
+                  <motion.div variants={item}>
+                    <MotionCard
+                      whileHover={{ 
+                        y: -10,
+                        transition: { duration: 0.2 }
+                      }}
+                      sx={{
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        borderRadius: 4,
+                        background: 'rgba(30, 41, 59, 0.4)',
+                        backdropFilter: 'blur(12px)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                        '&:hover': {
+                          borderColor: `${project.color}44`,
+                          boxShadow: `0 20px 40px -20px ${project.color}33`,
+                        },
+                      }}
+                      onClick={() => window.open(project.link, '_blank')}
+                    >
+                      <Box sx={{ 
+                        p: 4, 
+                        display: 'flex', 
+                        justifyContent: 'center', 
+                        position: 'relative',
+                        overflow: 'hidden',
+                        background: `linear-gradient(135deg, ${project.color}15 0%, transparent 100%)`,
+                      }}>
+                        <Box sx={{ 
+                          width: 80, 
+                          height: 80, 
+                          borderRadius: 3, 
+                          background: `linear-gradient(135deg, ${project.color}, ${project.color}88)`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '2.5rem',
+                          boxShadow: `0 10px 20px -5px ${project.color}66`,
+                          zIndex: 1
+                        }}>
+                          {project.icon}
+                        </Box>
+                        
+                        {/* Decorative elements */}
+                        <Box sx={{
+                          position: 'absolute',
+                          top: -20,
+                          right: -20,
+                          width: 100,
+                          height: 100,
+                          borderRadius: '50%',
+                          background: project.color,
+                          opacity: 0.03,
+                        }} />
+                      </Box>
+
+                      <CardContent sx={{ p: 4, pt: 2, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                        <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                          {project.tags?.map(tag => (
+                            <Chip 
+                              key={tag} 
+                              label={tag} 
+                              size="small" 
+                              sx={{ 
+                                fontSize: '0.65rem', 
+                                height: 20,
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                color: 'text.secondary',
+                                borderRadius: 1
+                              }} 
+                            />
+                          ))}
+                        </Box>
+
+                        <Typography
+                          variant="h5"
+                          sx={{
+                            fontWeight: 700,
+                            mb: 1.5,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1
+                          }}
+                        >
+                          {project.title}
+                        </Typography>
+
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: 'text.secondary',
+                            lineHeight: 1.7,
+                            mb: 4,
+                            flexGrow: 1
+                          }}
+                        >
+                          {project.description}
+                        </Typography>
+
+                        <Box sx={{ 
+                          mt: 'auto',
+                          pt: 3,
+                          borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between'
+                        }}>
+                          <Typography variant="caption" sx={{ color: project.color, fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase' }}>
+                            Case Study
+                          </Typography>
+                          <LaunchIcon sx={{ fontSize: 18, color: 'text.secondary', opacity: 0.5 }} />
+                        </Box>
+                      </CardContent>
+                    </MotionCard>
+                  </motion.div>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </Box>
+          </motion.div>
+        </AnimatePresence>
+      </Container>
     </Box>
   );
 }
