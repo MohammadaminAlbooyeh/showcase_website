@@ -148,7 +148,7 @@ export default function Projects() {
       minHeight: '100vh',
       background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
     }}>
-      <Container maxWidth="xl">
+      <Container maxWidth={false} sx={{ px: { xs: 2, md: 8 } }}>
         <Box sx={{ mb: 8, textAlign: 'center' }}>
           <MotionTypography
             initial={{ opacity: 0, y: -20 }}

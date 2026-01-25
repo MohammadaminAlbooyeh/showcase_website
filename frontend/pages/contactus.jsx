@@ -104,79 +104,8 @@ export default function ContactUs() {
 			minHeight: '100vh',
 			background: 'radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.05) 0%, transparent 50%)',
 		}}>
-			<Container maxWidth="lg">
+			<Container maxWidth={false} sx={{ px: { xs: 2, md: 8 } }}>
 				<Grid container spacing={8}>
-					{/* Left Side: Info */}
-					<Grid item xs={12} md={5}>
-						<MotionBox
-							initial={{ opacity: 0, x: -20 }}
-							animate={{ opacity: 1, x: 0 }}
-							transition={{ duration: 0.6 }}
-						>
-							<Typography variant="h2" sx={{ fontWeight: 800, mb: 2, background: 'linear-gradient(to right, #f59e0b, #d97706)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-								Let's Connect
-							</Typography>
-							<Typography variant="h6" sx={{ color: 'text.secondary', mb: 6, fontWeight: 400, lineHeight: 1.6 }}>
-								I’m always open to discussing new projects, creative ideas or opportunities to be part of your visions.
-							</Typography>
-
-							<Stack spacing={4} sx={{ mb: 6 }}>
-								{contactInfo.map((info, i) => (
-									<Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-										<Box sx={{ 
-											width: 50, 
-											height: 50, 
-											borderRadius: '12px', 
-											display: 'flex', 
-											alignItems: 'center', 
-											justifyContent: 'center',
-											background: alpha(info.color, 0.1),
-											color: info.color
-										}}>
-											{info.icon}
-										</Box>
-										<Box>
-											<Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 0.5 }}>
-												{info.label}
-											</Typography>
-											<Typography variant="body1" sx={{ fontWeight: 600 }}>
-												{info.value}
-											</Typography>
-										</Box>
-									</Box>
-								))}
-							</Stack>
-
-							<Box>
-								<Typography variant="subtitle2" sx={{ mb: 2, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: 1 }}>
-									Follow Me
-								</Typography>
-								<Stack direction="row" spacing={2}>
-									{socials.map((social, i) => (
-										<IconButton 
-											key={i}
-											component="a"
-											href={social.link}
-											sx={{ 
-												background: 'rgba(255, 255, 255, 0.03)',
-												border: '1px solid rgba(255, 255, 255, 0.05)',
-												transition: 'all 0.3s ease',
-												'&:hover': {
-													background: alpha('#f59e0b', 0.1),
-													borderColor: '#f59e0b',
-													color: '#f59e0b',
-													transform: 'translateY(-3px)'
-												}
-											}}
-										>
-											{social.icon}
-										</IconButton>
-									))}
-								</Stack>
-							</Box>
-						</MotionBox>
-					</Grid>
-
 					{/* Right Side: Form */}
 					<Grid item xs={12} md={7}>
 						<MotionPaper
@@ -305,6 +234,77 @@ export default function ContactUs() {
 								)}
 							</AnimatePresence>
 						</MotionPaper>
+					</Grid>
+
+					{/* Left Side: Info */}
+					<Grid item xs={12} md={5}>
+						<MotionBox
+							initial={{ opacity: 0, x: -20 }}
+							animate={{ opacity: 1, x: 0 }}
+							transition={{ duration: 0.6 }}
+						>
+							<Typography variant="h2" sx={{ fontWeight: 800, mb: 2, background: 'linear-gradient(to right, #f59e0b, #d97706)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+								Let's Connect
+							</Typography>
+							<Typography variant="h6" sx={{ color: 'text.secondary', mb: 6, fontWeight: 400, lineHeight: 1.6 }}>
+								I’m always open to discussing new projects, creative ideas or opportunities to be part of your visions.
+							</Typography>
+
+							<Stack spacing={4} sx={{ mb: 6 }}>
+								{contactInfo.map((info, i) => (
+									<Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+										<Box sx={{ 
+											width: 50, 
+											height: 50, 
+											borderRadius: '12px', 
+											display: 'flex', 
+											alignItems: 'center', 
+											justifyContent: 'center',
+											background: alpha(info.color, 0.1),
+											color: info.color
+										}}>
+											{info.icon}
+										</Box>
+										<Box>
+											<Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', mb: 0.5 }}>
+												{info.label}
+											</Typography>
+											<Typography variant="body1" sx={{ fontWeight: 600 }}>
+												{info.value}
+											</Typography>
+										</Box>
+									</Box>
+								))}
+							</Stack>
+
+							<Box>
+								<Typography variant="subtitle2" sx={{ mb: 2, color: 'text.secondary', textTransform: 'uppercase', letterSpacing: 1 }}>
+									Follow Me
+								</Typography>
+								<Stack direction="row" spacing={2}>
+									{socials.map((social, i) => (
+										<IconButton 
+											key={i}
+											component="a"
+											href={social.link}
+											sx={{ 
+												background: 'rgba(255, 255, 255, 0.03)',
+												border: '1px solid rgba(255, 255, 255, 0.05)',
+												transition: 'all 0.3s ease',
+												'&:hover': {
+													background: alpha('#f59e0b', 0.1),
+													borderColor: '#f59e0b',
+													color: '#f59e0b',
+													transform: 'translateY(-3px)'
+												}
+											}}
+										>
+											{social.icon}
+										</IconButton>
+									))}
+								</Stack>
+							</Box>
+						</MotionBox>
 					</Grid>
 				</Grid>
 			</Container>

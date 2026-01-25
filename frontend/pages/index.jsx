@@ -57,13 +57,12 @@ export default function Home() {
           top: '-10%',
           right: '-10%',
           zIndex: -1,
-          animation: 'pulse 10s infinite alternate ease-in-out',
         }} />
 
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{ px: { xs: 2, md: 8 } }}>
           <Grid container spacing={8} alignItems="center">
             {/* Left Column: Text Content */}
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={9}>
               <MotionBox
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -91,8 +90,7 @@ export default function Home() {
                     mb: 6, 
                     lineHeight: 1.8, 
                     fontWeight: 400,
-                    fontSize: '1.25rem',
-                    maxWidth: '90%'
+                    fontSize: '1.25rem'
                   }}
                 >
                   I'm Amin, a Full-Stack developer based in <b>Turin, Italy</b>. 
@@ -123,31 +121,11 @@ export default function Home() {
                     View Projects
                   </Button>
                 </Stack>
-
-                <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 2 }}>
-                  {skills.map((skill, i) => (
-                    <Chip 
-                      key={i}
-                      icon={skill.icon}
-                      label={skill.label}
-                      sx={{ 
-                        background: 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(255, 255, 255, 0.05)',
-                        color: 'text.secondary',
-                        fontWeight: 600,
-                        px: 1,
-                        py: 2,
-                        borderRadius: 2,
-                        '& .MuiChip-icon': { color: skill.color }
-                      }}
-                    />
-                  ))}
-                </Stack>
               </MotionBox>
             </Grid>
 
             {/* Right Column: Visual Element */}
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={3}>
               <MotionBox
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -155,7 +133,8 @@ export default function Home() {
                 sx={{
                   position: 'relative',
                   display: 'flex',
-                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  alignItems: 'center',
                 }}
               >
                 {/* Profile Image Wrapper */}
@@ -169,6 +148,7 @@ export default function Home() {
                   border: '1px solid rgba(255,255,255,0.1)',
                   boxShadow: '0 50px 100px -20px rgba(0,0,0,0.5)',
                   animation: 'blob 15s infinite alternate ease-in-out',
+                  mb: 4,
                 }}>
                   <img
                     src="/profile.jpg"
@@ -180,6 +160,28 @@ export default function Home() {
                     }}
                   />
                 </Box>
+
+                {/* Skills Chips */}
+                <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1, justifyContent: 'center', mb: 2 }}>
+                  {skills.map((skill, i) => (
+                    <Chip 
+                      key={i}
+                      icon={skill.icon}
+                      label={skill.label}
+                      sx={{ 
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        color: 'text.secondary',
+                        fontWeight: 600,
+                        px: 1,
+                        py: 1,
+                        borderRadius: 2,
+                        fontSize: '0.75rem',
+                        '& .MuiChip-icon': { color: skill.color }
+                      }}
+                    />
+                  ))}
+                </Stack>
 
                 {/* Decorative Stats/Floating Elements */}
                 <MotionBox
