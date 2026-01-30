@@ -4,7 +4,9 @@ import {
   TextField,
   Chip,
   alpha,
+  InputAdornment
 } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 const ProjectFilter = ({ allTags, onSearch, onTagsChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,54 +26,85 @@ const ProjectFilter = ({ allTags, onSearch, onTagsChange }) => {
   };
 
   return (
-    <Box sx={{ mb: 4 }}>
+    <Box sx={{ mb: 6 }}>
       <TextField
         fullWidth
         variant="outlined"
-        placeholder="Search projects..."
+        placeholder="Search projects by title or content..."
         value={searchTerm}
         onChange={(e) => handleSearch(e.target.value)}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon sx={{ color: 'rgba(255, 255, 255, 0.3)' }} />
+            </InputAdornment>
+          ),
+        }}
         sx={{
-          mb: 3,
+          mb: 4,
           '& .MuiOutlinedInput-root': {
-            backgroundColor: 'var(--color-nav-bg)',
+            backgroundColor: 'rgba(30, 41, 59, 0.4)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: 3,
             '& fieldset': {
-              borderColor: 'var(--color-primary)',
+              borderColor: 'rgba(255, 255, 255, 0.1)',
             },
             '&:hover fieldset': {
-              borderColor: 'var(--color-accent)',
+              borderColor: 'rgba(96, 165, 250, 0.4)',
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'var(--color-accent)',
+              borderColor: '#60a5fa',
+              borderWidth: '2px',
             },
           },
           '& .MuiInputBase-input': {
-            color: 'var(--color-primary)',
+            color: '#fff',
+            py: 1.8,
+            fontSize: '1.1rem',
           },
         }}
       />
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-        {allTags.map((tag) => (
-          <Chip
-            key={tag}
-            label={tag}
-            onClick={() => handleTagClick(tag)}
-            sx={{
-              backgroundColor: selectedTags.includes(tag)
-                ? 'var(--color-accent)'
-                : alpha('var(--color-accent)', 0.1),
-              color: selectedTags.includes(tag)
-                ? 'var(--color-bg)'
-                : 'var(--color-accent)',
-              '&:hover': {
-                backgroundColor: selectedTags.includes(tag)
-                  ? alpha('var(--color-accent)', 0.8)
-                  : alpha('var(--color-accent)', 0.2),
-              },
-            }}
-          />
-        ))}
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, justifyContent: 'center' }}>
+        {allTags.map((tag) => {
+          const isActive = selectedTags.includes(tag);
+          return (
+            <Chip
+              key={tag}
+              label={tag}
+              onClick={() => handleTagClick(tag)}
+              sx={{
+                px: 2,
+                py: 2.5,
+                borderRadius: 3,
+                fontSize: '0.9rem',
+                fontWeight: 600,
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                backgroundColor: isActive
+                  ? '#60a5fa'
+                  : 'rgba(255, 255, 255, 0.03)',
+                color: isActive
+                  ? '#0f172a'
+                  : 'rgba(255, 255, 255, 0.6)',
+                border: '1px solid',
+                borderColor: isActive 
+                  ? '#60a5fa' 
+                  : 'rgba(255, 255, 255, 0.08)',
+                '&:hover': {
+                  backgroundColor: isActive
+                    ? '#3b82f6'
+                    : 'rgba(255, 255, 255, 0.08)',
+                  borderColor: isActive ? '#3b82f6' : 'rgba(96, 165, 250, 0.3)',
+                  transform: 'translateY(-2px)',
+                  color: isActive ? '#0f172a' : '#fff',
+                },
+                '&.MuiChip-root .MuiChip-label': {
+                  px: 1,
+                }
+              }}
+            />
+          );
+        })}
       </Box>
     </Box>
   );

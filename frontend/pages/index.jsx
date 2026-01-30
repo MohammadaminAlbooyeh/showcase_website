@@ -11,14 +11,70 @@ import {
   alpha,
   useTheme
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import CodeIcon from '@mui/icons-material/Code';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import StorageIcon from '@mui/icons-material/Storage';
+import InteractiveBackground from '../components/InteractiveBackground';
 
 const MotionBox = motion(Box);
 const MotionTypography = motion(Typography);
+
+const Typewriter = ({ texts }) => {
+  const [index, setIndex] = React.useState(0);
+  const [subIndex, setSubIndex] = React.useState(0);
+  const [reverse, setReverse] = React.useState(false);
+  const [isPaused, setIsPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (isPaused) return;
+
+    const currentText = texts[index];
+    
+    // Check for custom break/pause marker "|"
+    const parts = currentText.split('|');
+    const fullTextWithoutMarkers = currentText.replace('|', '');
+    
+    // Pause logic for the first sentence after "Hi, I'm Amin Albooyeh,"
+    if (index === 0 && !reverse && subIndex === parts[0].length && currentText.includes('|')) {
+      setIsPaused(true);
+      setTimeout(() => {
+        setIsPaused(false);
+        setSubIndex((prev) => prev + 1); // Skip the "|" marker index logic-wise
+      }, 3000);
+      return;
+    }
+
+    if (subIndex === fullTextWithoutMarkers.length + (currentText.includes('|') ? 1 : 0) + 1 && !reverse) {
+      setTimeout(() => setReverse(true), 2000);
+      return;
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % texts.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 75 : 150);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse, texts, isPaused]);
+
+  return (
+    <Box component="span" sx={{ display: 'inline-block', minWidth: '20px' }}>
+      {texts[index].substring(0, subIndex).replace('|', '')}
+      <motion.span
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ repeat: Infinity, duration: 0.8 }}
+        style={{ marginLeft: '2px', borderLeft: '3px solid #60a5fa' }}
+      />
+    </Box>
+  );
+};
 
 export default function Home() {
   const theme = useTheme();
@@ -34,7 +90,7 @@ export default function Home() {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Amin Albooyeh | Full-Stack Developer</title>
+        <title>Amin Albooyeh | Python Developer</title>
         <meta name="description" content="Amin Albooyeh - Experienced software developer in Java and Python (Django). Explore portfolio, projects, and resume." />
       </Helmet>
 
@@ -44,8 +100,9 @@ export default function Home() {
         alignItems: 'center',
         position: 'relative',
         overflow: 'hidden',
-        background: 'radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%)',
       }}>
+        <InteractiveBackground />
+        
         {/* Animated Background Orbs */}
         <Box sx={{
           position: 'absolute',
@@ -71,16 +128,23 @@ export default function Home() {
                 <Typography 
                   variant="h1" 
                   sx={{ 
-                    fontSize: { xs: '2.5rem', md: '3.5rem' },
+                    fontSize: { xs: '2.5rem', md: '4rem' },
                     fontWeight: 900,
                     lineHeight: 1.1,
                     mb: 4,
-                    background: 'linear-gradient(to right, #fff 0%, #94a3b8 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    color: '#fff',
                   }}
                 >
-                  Hi there, I am Amin
+                  <Box component="span" sx={{ 
+                    background: 'linear-gradient(to right, #60a5fa, #fbbf24)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}>
+                    <Typewriter texts={[
+                      "Hi, I'm Amin Albooyeh,| a Python Developer", 
+                      "I have +8 Years of Professional Experience"
+                    ]} />
+                  </Box>
                 </Typography>
 
                 <Typography 
@@ -200,7 +264,7 @@ export default function Home() {
                     display: { xs: 'none', md: 'block' }
                   }}
                 >
-                  <Typography variant="h6" sx={{ color: '#f59e0b', fontWeight: 800 }}>4+</Typography>
+                  <Typography variant="h6" sx={{ color: '#f59e0b', fontWeight: 800 }}>8+</Typography>
                   <Typography variant="caption" sx={{ color: 'text.secondary' }}>Years Exp.</Typography>
                 </MotionBox>
 
@@ -220,7 +284,7 @@ export default function Home() {
                     display: { xs: 'none', md: 'block' }
                   }}
                 >
-                  <Typography variant="h6" sx={{ color: '#3b82f6', fontWeight: 800 }}>20+</Typography>
+                  <Typography variant="h6" sx={{ color: '#3b82f6', fontWeight: 800 }}>60+</Typography>
                   <Typography variant="caption" sx={{ color: 'text.secondary' }}>Projects</Typography>
                 </MotionBox>
               </MotionBox>

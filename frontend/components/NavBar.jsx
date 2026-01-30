@@ -30,10 +30,19 @@ export default function NavBar() {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navRef = React.useRef(null);
   const [focusedIndex, setFocusedIndex] = React.useState(-1);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Handle keyboard navigation
   const handleKeyPress = (e, index) => {
@@ -131,16 +140,16 @@ export default function NavBar() {
       transition={{ duration: 0.5 }}
     >
       <AppBar 
-        position="sticky" 
+        position="fixed" 
         color="default" 
-        elevation={2} 
+        elevation={scrolled ? 4 : 0} 
         component="nav"
         aria-label="Main navigation"
         sx={{ 
-          background: 'var(--color-nav-bg)', 
-          backdropFilter: 'blur(8px)',
-          borderBottom: '1px solid',
-          borderColor: 'divider'
+          background: scrolled ? 'rgba(15, 23, 42, 0.8)' : 'transparent', 
+          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
+          transition: 'all 0.3s ease-in-out',
         }}
       >
         {isLoading && (

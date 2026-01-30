@@ -11,6 +11,8 @@ const InteractiveBackground = () => {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
+      if (!containerRef.current) return;
+      
       const { left, top, width, height } = containerRef.current.getBoundingClientRect();
       const x = (e.clientX - left) / width;
       const y = (e.clientY - top) / height;
