@@ -45,5 +45,3 @@ django-prometheus==2.3.1  # Metrics and monitoring
 # redis==5.0.1
 
 # Note: Frontend dependencies (React, Vite, etc.) are managed separately in package.json
-
-kubernetes==26.3.0
