@@ -11,7 +11,7 @@ export default function Home() {
         <p>
           I am an experienced software developer with 2 years of background
           in Java development. In addition, I have over 3 years of professional
-          experience as a Python developer, primarily working with Django. I have
+          experience as a Fullstack developer, primarily working with Django. I have
           a strong understanding of backend architecture, RESTful APIs, and relational databases.
         </p>
       </div>

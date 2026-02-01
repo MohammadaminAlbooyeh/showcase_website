@@ -6,6 +6,210 @@ import ProjectFilter from '../components/ProjectFilter';
 
 const MotionCard = motion(Card);
 const MotionTypography = motion(Typography);
+const MotionBox = motion(Box);
+
+const ProjectCard = ({ project, itemVariants }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const videoRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (isHovered && videoRef.current) {
+      videoRef.current.play().catch(err => console.log("Video play interrupted"));
+    } else if (!isHovered && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [isHovered]);
+
+  return (
+    <Box sx={{ display: 'flex', width: '100%' }}>
+      <Card
+        component={motion.div}
+        variants={itemVariants}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        whileHover={{ 
+          y: -10,
+          transition: { duration: 0.2 }
+        }}
+        sx={{
+          width: '100%',
+          height: '580px',
+          minHeight: '580px',
+          maxHeight: '580px',
+          display: 'flex',
+          flexDirection: 'column',
+          borderRadius: 4,
+          background: 'rgba(30, 41, 59, 0.4)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+          overflow: 'hidden',
+          cursor: 'pointer',
+          position: 'relative',
+          '&:hover': {
+            borderColor: `${project.color}66`,
+            boxShadow: `0 20px 40px -20px ${project.color}44`,
+          },
+        }}
+        onClick={() => window.open(project.link, '_blank')}
+      >
+        {/* Media Section: Video or Icon */}
+        <Box sx={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+          background: isHovered && project.video ? '#000' : `linear-gradient(135deg, ${project.color}20 0%, transparent 100%)`,
+          height: 200,
+          flexShrink: 0,
+          transition: 'background 0.3s ease'
+        }}>
+          {/* Static Icon State */}
+          <AnimatePresence>
+            {!isHovered && (
+              <MotionBox
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 1
+                }}
+              >
+                <Box 
+                  className="project-icon"
+                  sx={{ 
+                    width: 90, 
+                    height: 90, 
+                    borderRadius: '50%',
+                    background: `linear-gradient(135deg, ${project.color}40, ${project.color}20)`,
+                    border: `2px solid ${project.color}60`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '3rem',
+                    boxShadow: `0 15px 35px -10px ${project.color}50`,
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  <span>{project.icon}</span>
+                </Box>
+              </MotionBox>
+            )}
+          </AnimatePresence>
+
+          {/* Video Mockup State (Shown on Hover) */}
+          {project.video && (
+            <video
+              ref={videoRef}
+              src={project.video}
+              muted
+              loop
+              playsInline
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                opacity: isHovered ? 1 : 0,
+                transition: 'opacity 0.5s ease',
+              }}
+            />
+          )}
+
+          <Box sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 150,
+            height: 150,
+            borderRadius: '50%',
+            background: project.color,
+            opacity: 0.1,
+            filter: 'blur(40px)',
+          }} />
+        </Box>
+
+        <CardContent sx={{ 
+          p: 4, 
+          display: 'flex', 
+          flexDirection: 'column',
+          flexGrow: 1,
+          height: 380,
+          boxSizing: 'border-box'
+        }}>
+          <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 1, height: 48, overflow: 'hidden' }}>
+            {project.tags?.map(tag => (
+              <Chip 
+                key={tag} 
+                label={tag} 
+                size="small" 
+                sx={{ 
+                  fontSize: '0.65rem', 
+                  height: 20,
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  color: 'text.secondary'
+                }} 
+              />
+            ))}
+          </Box>
+
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 700,
+              mb: 1.5,
+              height: 36,
+              overflow: 'hidden',
+              display: '-webkit-box',
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: 'vertical',
+              color: '#fff'
+            }}
+          >
+            {project.title}
+          </Typography>
+
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+              lineHeight: 1.7,
+              height: 105,
+              overflow: 'hidden',
+              display: '-webkit-box',
+              WebkitLineClamp: 4,
+              WebkitBoxOrient: 'vertical',
+            }}
+          >
+            {project.description}
+          </Typography>
+
+          <Box sx={{ 
+            mt: 'auto',
+            pt: 3,
+            borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+            <Typography variant="caption" sx={{ color: project.color, fontWeight: 800, letterSpacing: 1, textTransform: 'uppercase' }}>
+              View Details
+            </Typography>
+            <LaunchIcon sx={{ fontSize: 18, color: 'text.secondary', opacity: 0.5 }} />
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
+  );
+};
 
 export default function Projects() {
   const [activeTags, setActiveTags] = React.useState([]);
@@ -19,7 +223,8 @@ export default function Projects() {
       color: '#00ff73',
       link: '#',
       icon: '✓',
-      tags: ['React', 'Local Storage']
+      tags: ['React', 'Local Storage'],
+      video: '/videos/todo.mp4' // Placeholder path
     },
     {
       id: 2,
@@ -28,7 +233,8 @@ export default function Projects() {
       color: '#3b82f6',
       link: '#',
       icon: '$',
-      tags: ['Next.js', 'Intermediate Project']
+      tags: ['Next.js', 'Intermediate Project'],
+      video: '/videos/budget.mp4'
     },
     {
       id: 3,
@@ -37,7 +243,8 @@ export default function Projects() {
       color: '#ff3b54',
       link: '#',
       icon: '🔍',
-      tags: ['Python', 'Data Processing', 'ML']
+      tags: ['Python', 'Data Processing', 'ML'],
+      video: '/videos/fraud.mp4'
     },
     {
       id: 4,
@@ -46,7 +253,8 @@ export default function Projects() {
       color: '#ff6b35',
       link: '#',
       icon: '🎨',
-      tags: ['OpenCV', 'Data Processing']
+      tags: ['OpenCV', 'Data Processing'],
+      video: '/videos/color.mp4'
     },
     {
       id: 5,
@@ -55,7 +263,8 @@ export default function Projects() {
       color: '#10b981',
       link: '#',
       icon: '💪',
-      tags: ['React Native', 'Firebase']
+      tags: ['React Native', 'Firebase'],
+      video: '/videos/fitness.mp4'
     },
     {
       id: 6,
@@ -64,7 +273,8 @@ export default function Projects() {
       color: '#8b5cf6',
       link: '#',
       icon: '💬',
-      tags: ['NLP', 'Asyncio', 'Node.js']
+      tags: ['NLP', 'Asyncio', 'Node.js'],
+      video: '/videos/chatbot.mp4'
     },
     {
       id: 7,
@@ -73,7 +283,8 @@ export default function Projects() {
       color: '#06b6d4',
       link: '#',
       icon: '👤',
-      tags: ['OpenCV', 'Intermediate Project']
+      tags: ['OpenCV', 'Intermediate Project'],
+      video: '/videos/face.mp4'
     },
     {
       id: 8,
@@ -82,7 +293,8 @@ export default function Projects() {
       color: '#f59e0b',
       link: '#',
       icon: '🕷️',
-      tags: ['Python', 'Asyncio', 'Data Processing']
+      tags: ['Python', 'Asyncio', 'Data Processing'],
+      video: '/videos/scraper.mp4'
     },
     {
       id: 9,
@@ -91,7 +303,8 @@ export default function Projects() {
       color: '#0ea5e9',
       link: '#',
       icon: '📊',
-      tags: ['React', 'Data Processing', 'Intermediate Project']
+      tags: ['React', 'Data Processing', 'Intermediate Project'],
+      video: '/videos/dashboard.mp4'
     },
     {
       id: 10,
@@ -100,7 +313,8 @@ export default function Projects() {
       color: '#ec4899',
       link: '#',
       icon: '💰',
-      tags: ['Vue', 'Intermediate Project']
+      tags: ['Vue', 'Intermediate Project'],
+      video: '/videos/income.mp4'
     },
     {
       id: 11,
@@ -109,7 +323,8 @@ export default function Projects() {
       color: '#14b8a6',
       link: '#',
       icon: '🌤️',
-      tags: ['API', 'Asyncio']
+      tags: ['API', 'Asyncio'],
+      video: '/videos/weather.mp4'
     },
     {
       id: 12,
@@ -118,7 +333,8 @@ export default function Projects() {
       color: '#f97316',
       link: '#',
       icon: '🍎',
-      tags: ['PWA', 'JavaScript']
+      tags: ['PWA', 'JavaScript'],
+      video: '/videos/calorie.mp4'
     },
     {
       id: 13,
@@ -127,7 +343,8 @@ export default function Projects() {
       color: '#a855f7',
       link: '#',
       icon: '🖼️',
-      tags: ['NumPy', 'Data Processing', 'Intermediate Project']
+      tags: ['NumPy', 'Data Processing', 'Intermediate Project'],
+      video: '/videos/image-tool.mp4'
     },
   ];
 
@@ -217,156 +434,7 @@ export default function Projects() {
             }}
           >
             {filteredProjects.map((project) => (
-              <Box key={project.id} sx={{ display: 'flex' }}>
-                <Card
-                  component={motion.div}
-                  variants={item}
-                  whileHover={{ 
-                    y: -10,
-                    transition: { duration: 0.2 }
-                  }}
-                  sx={{
-                    width: '100%',
-                    height: '580px', // Uniform height
-                    minHeight: '580px',
-                    maxHeight: '580px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    borderRadius: 4,
-                    background: 'rgba(30, 41, 59, 0.4)',
-                    backdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    '&:hover': {
-                      borderColor: `${project.color}66`,
-                      boxShadow: `0 20px 40px -20px ${project.color}44`,
-                    },
-                    '&:hover .project-icon': {
-                      transform: 'scale(1.1) rotate(5deg)',
-                    },
-                  }}
-                  onClick={() => window.open(project.link, '_blank')}
-                >
-                  <Box sx={{ 
-                    p: 4, 
-                    display: 'flex', 
-                    justifyContent: 'center', 
-                    alignItems: 'center',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    background: `linear-gradient(135deg, ${project.color}20 0%, transparent 100%)`,
-                    height: 200,
-                    flexShrink: 0,
-                  }}>
-                    <Box 
-                      className="project-icon"
-                      sx={{ 
-                        width: 90, 
-                        height: 90, 
-                        borderRadius: '50%', // Circular icon background
-                        background: `linear-gradient(135deg, ${project.color}40, ${project.color}20)`,
-                        border: `2px solid ${project.color}60`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '3rem',
-                        boxShadow: `0 15px 35px -10px ${project.color}50`,
-                        zIndex: 1,
-                        position: 'relative',
-                        transition: 'all 0.3s ease',
-                      }}
-                    >
-                      <span style={{ position: 'relative', zIndex: 2 }}>
-                        {project.icon}
-                      </span>
-                    </Box>
-                    <Box sx={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: 150,
-                      height: 150,
-                      borderRadius: '50%',
-                      background: project.color,
-                      opacity: 0.1,
-                      filter: 'blur(40px)',
-                    }} />
-                  </Box>
-
-                  <CardContent sx={{ 
-                    p: 4, 
-                    display: 'flex', 
-                    flexDirection: 'column',
-                    flexGrow: 1,
-                    height: 380,
-                    boxSizing: 'border-box'
-                  }}>
-                    <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 1, height: 48, overflow: 'hidden' }}>
-                      {project.tags?.map(tag => (
-                        <Chip 
-                          key={tag} 
-                          label={tag} 
-                          size="small" 
-                          sx={{ 
-                            fontSize: '0.65rem', 
-                            height: 20,
-                            background: 'rgba(255, 255, 255, 0.05)',
-                            color: 'text.secondary'
-                          }} 
-                        />
-                      ))}
-                    </Box>
-
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        fontWeight: 700,
-                        mb: 1.5,
-                        height: 36,
-                        overflow: 'hidden',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 1,
-                        WebkitBoxOrient: 'vertical',
-                        color: '#fff'
-                      }}
-                    >
-                      {project.title}
-                    </Typography>
-
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: 'text.secondary',
-                        lineHeight: 1.7,
-                        height: 105,
-                        overflow: 'hidden',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 4,
-                        WebkitBoxOrient: 'vertical',
-                      }}
-                    >
-                      {project.description}
-                    </Typography>
-
-                    <Box sx={{ 
-                      mt: 'auto',
-                      pt: 3,
-                      borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between'
-                    }}>
-                      <Typography variant="caption" sx={{ color: project.color, fontWeight: 800, letterSpacing: 1, textTransform: 'uppercase' }}>
-                        Case Study
-                      </Typography>
-                      <LaunchIcon sx={{ fontSize: 18, color: 'text.secondary', opacity: 0.5 }} />
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Box>
+              <ProjectCard key={project.id} project={project} itemVariants={item} />
             ))}
           </Box>
         </AnimatePresence>
