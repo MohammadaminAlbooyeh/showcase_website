@@ -346,13 +346,72 @@ export default function Projects() {
       tags: ['NumPy', 'Data Processing', 'Intermediate Project'],
       video: '/videos/image-tool.mp4'
     },
+    {
+      id: 14,
+      title: 'Async Downloader',
+      description: 'A high-performance asynchronous file downloader that handles multiple downloads concurrently with progress tracking and error handling.',
+      color: '#3b82f6',
+      link: '#',
+      icon: '⬇️',
+      tags: ['Python', 'Asyncio', 'Data Processing'],
+      video: '/videos/async-downloader.mp4'
+    },
+    {
+      id: 15,
+      title: 'Salary Calculator',
+      description: 'An interactive salary calculator that computes take-home pay, taxes, and benefits based on various parameters and locations.',
+      color: '#10b981',
+      link: '#',
+      icon: '💰',
+      tags: ['JavaScript', 'Intermediate Project'],
+      video: '/videos/salary-calculator.mp4'
+    },
+    {
+      id: 16,
+      title: 'LeetCode Solutions',
+      description: 'A comprehensive collection of optimized solutions to LeetCode problems with detailed explanations and time/space complexity analysis.',
+      color: '#ff3b54',
+      link: '#',
+      icon: '🧠',
+      tags: ['Python', 'Algorithms', 'Data Structures'],
+      video: '/videos/leetcode-solutions.mp4'
+    },
+    {
+      id: 17,
+      title: 'Notebook App',
+      description: 'A feature-rich notebook application for creating, organizing, and sharing interactive notes with code execution capabilities.',
+      color: '#8b5cf6',
+      link: '#',
+      icon: '📓',
+      tags: ['React', 'Intermediate Project', 'Productivity'],
+      video: '/videos/notebook-app.mp4'
+    },
+    {
+      id: 18,
+      title: 'Auto Fill Google Form',
+      description: 'An automation tool that intelligently fills Google Forms with predefined data, supporting various form types and validation rules.',
+      color: '#f59e0b',
+      link: '#',
+      icon: '📝',
+      tags: ['Python', 'Automation', 'Selenium'],
+      video: '/videos/auto-fill-form.mp4'
+    },
+    {
+      id: 19,
+      title: 'Matrix Operation Engine',
+      description: 'A high-performance matrix computation engine implementing various linear algebra operations with optimized algorithms.',
+      color: '#06b6d4',
+      link: '#',
+      icon: '🔢',
+      tags: ['NumPy', 'Data Processing', 'Mathematics'],
+      video: '/videos/matrix-engine.mp4'
+    },
   ];
 
-  const filterCategories = ['Data Processing', 'Asyncio', 'Intermediate Project'];
+  const filterCategories = ['Data Processing', 'Asyncio', 'Intermediate Project', 'Algorithms', 'Automation', 'Mathematics'];
 
   const filteredProjects = projects.filter(project => {
-    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         project.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesTags = activeTags.length === 0 || 
                        activeTags.every(tag => project.tags.includes(tag));
     return matchesSearch && matchesTags;

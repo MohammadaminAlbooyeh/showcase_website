@@ -36,8 +36,7 @@ const ProjectGrid = ({ projects }) => {
   const filteredProjects = useMemo(() => {
     return projects
       .filter(project => {
-        const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            project.description.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesTech = selectedTech === 'all' || project.technologies.includes(selectedTech);
         return matchesSearch && matchesTech;
       })
