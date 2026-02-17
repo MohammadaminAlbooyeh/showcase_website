@@ -311,7 +311,7 @@ export default function Home() {
                     boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
                   }}
                 >
-                  <Typography variant="h5" sx={{ color: '#3b82f6', fontWeight: 900 }}>60+</Typography>
+                  <Typography variant="h5" sx={{ color: '#3b82f6', fontWeight: 900 }}>100+</Typography>
                   <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>Projects</Typography>
                 </Box>
               </MotionBox>

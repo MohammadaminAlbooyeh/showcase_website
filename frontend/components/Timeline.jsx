@@ -7,7 +7,7 @@ import { alpha } from '@mui/material/styles';
 const timelineData = [
   {
     year: '2023 - Present',
-    title: 'Senior Python Developer',
+    title: 'Senior Python developer',
     company: 'Tech Solutions Inc.',
     description: 'Lead developer for high-scale Django applications and AI integrations.',
     responsibilities: [
