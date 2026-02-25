@@ -20,10 +20,10 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import SendIcon from '@mui/icons-material/Send';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import axios from 'axios';
 
 const MotionPaper = motion(Paper);
 const MotionBox = motion(Box);
@@ -150,7 +150,7 @@ export default function ContactUs() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const errs = validate();
-		
+
 		if (Object.keys(errs).length) {
 			setErrors(errs);
 			return;
@@ -160,12 +160,12 @@ export default function ContactUs() {
 		setErrors({});
 
 		try {
-			const res = await fetch('http://localhost:8000/api/contact/', {
+			const res = await fetch('https://formsubmit.co/amin.albooyeh@gmail.com', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(form),
 			});
-			
+
 			if (res.ok) {
 				setSuccess(true);
 				setForm({ name: '', email: '', subject: '', message: '' });
@@ -186,16 +186,23 @@ export default function ContactUs() {
 	};
 
 	const contactInfo = [
-		{ icon: <EmailIcon />, label: 'Email', value: 'hello@amin.dev', color: '#60a5fa', copyable: true },
+		{ icon: <EmailIcon />, label: 'Email', value: 'amin.albooyeh@gmail.com', color: '#60a5fa', copyable: true },
 		{ icon: <LocationOnIcon />, label: 'Location', value: 'Turin, Italy', color: '#60a5fa' },
-		{ icon: <LinkedInIcon />, label: 'LinkedIn', value: 'linkedin.com/in/amin', color: '#60a5fa' },
-		{ icon: <GitHubIcon />, label: 'GitHub', value: 'github.com/amin', color: '#60a5fa' },
+		{ icon: <LinkedInIcon />, label: 'LinkedIn', value: 'https://www.linkedin.com/in/amin-a-95a541176/', color: '#60a5fa' },
+		{ icon: <GitHubIcon />, label: 'GitHub', value: 'https://github.com/MohammadaminAlbooyeh?tab=overview&from=2026-02-01&to=2026-02-23', color: '#60a5fa' },
 	];
 
+	const handleShowFullAddress = (address) => {
+		alert(`Full Address: ${address}`);
+	};
+
+	const handleSocialClick = (link) => {
+		window.open(link, '_blank');
+	};
+
 	const socials = [
-		{ icon: <GitHubIcon />, link: 'https://github.com/MohammadaminAlbooyeh' },
-		{ icon: <LinkedInIcon />, link: '#' },
-		{ icon: <TwitterIcon />, link: '#' },
+		{ icon: <GitHubIcon />, link: 'https://github.com/MohammadaminAlbooyeh?tab=overview&from=2026-02-01&to=2026-02-23' },
+		{ icon: <LinkedInIcon />, link: 'https://www.linkedin.com/in/amin-a-95a541176/' },
 	];
 
 	return (
@@ -530,3 +537,20 @@ const fieldStyles = {
 		mt: 1
 	}
 };
+
+function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    axios.post('/api/contact/', {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+    })
+    .then(response => {
+        alert('Message sent successfully!');
+    })
+    .catch(error => {
+        alert('Failed to send message.');
+    });
+}

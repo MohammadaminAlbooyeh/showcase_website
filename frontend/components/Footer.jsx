@@ -1,7 +1,6 @@
 import { Box, Container, Grid, Typography, IconButton, Link, Divider, Stack } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
 import { motion } from 'framer-motion';
 
@@ -28,7 +27,6 @@ export default function Footer() {
           {[
             { icon: <GitHubIcon />, href: 'https://github.com/MohammadaminAlbooyeh' },
             { icon: <LinkedInIcon />, href: '#' },
-            { icon: <TwitterIcon />, href: '#' },
             { icon: <EmailIcon />, href: 'mailto:hello@amin.dev' },
           ].map((social, idx) => (
             <IconButton
@@ -37,7 +35,7 @@ export default function Footer() {
               href={social.href}
               target="_blank"
               whileHover={{ y: -5, color: '#60a5fa' }}
-              sx={{ 
+              sx={{
                 color: 'text.secondary', 
                 p: 1.5,
                 background: 'rgba(255, 255, 255, 0.03)',

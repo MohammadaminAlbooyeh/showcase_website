@@ -11,7 +11,7 @@ class AboutMe(models.Model):
     profile_image = models.URLField(blank=True)
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 
 # Portfolio Item model
 class PortfolioItem(models.Model):
@@ -21,7 +21,7 @@ class PortfolioItem(models.Model):
     link = models.URLField(blank=True)
 
     def __str__(self):
-        return self.title
+        return str(self.id)
 
 # Project model
 class Project(models.Model):
@@ -32,7 +32,7 @@ class Project(models.Model):
     live_link = models.URLField(blank=True)
 
     def __str__(self):
-        return self.title
+        return str(self.id)
 
 # Resume model
 class Resume(models.Model):
@@ -52,3 +52,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.subject}"
+
+# Contact Message model
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.name} - {self.subject}"

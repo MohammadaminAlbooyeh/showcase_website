@@ -6,46 +6,40 @@ import { alpha } from '@mui/material/styles';
 
 const timelineData = [
   {
-    year: '2023 - Present',
-    title: 'Senior Python developer',
-    company: 'Tech Solutions Inc.',
-    description: 'Lead developer for high-scale Django applications and AI integrations.',
-    responsibilities: [
-      'Architected and implemented microservices using Django REST Framework.',
-      'Optimized database queries reducing latency by 40%.',
-      'Integrated OpenAI APIs for automated content generation features.',
-      'Mentored junior developers and established CI/CD best practices.'
-    ],
-    skills: ['Django', 'Python', 'React', 'PostgreSQL', 'Docker'],
-    color: '#60a5fa'
+    year: '',
+    title: '',
+    company: '',
+    description: '',
+    responsibilities: [],
+    skills: [],
+    color: ''
   },
   {
-    year: '2021 - 2023',
-    title: 'Full Stack Developer',
-    company: 'Digital Wave Agency',
-    description: 'Specialized in building end-to-end web solutions for global clients.',
-    responsibilities: [
-      'Developed 15+ custom web applications from scratch.',
-      'Implemented real-time features using WebSockets and Django Channels.',
-      'Managed cloud infrastructure on AWS (EC2, S3, RDS).',
-      'Built responsive and accessible UIs using React and Material UI.'
-    ],
-    skills: ['Python', 'React', 'Next.js', 'Redis', 'AWS'],
-    color: '#fbbf24'
+    year: '',
+    title: '',
+    company: '',
+    description: '',
+    responsibilities: [],
+    skills: [],
+    color: ''
   },
   {
-    year: '2019 - 2021',
-    title: 'Backend Developer',
-    company: 'Innovation Lab',
-    description: 'Focused on robust API development and system architecture.',
-    responsibilities: [
-      'Designed and maintained complex RESTful APIs.',
-      'Automated data scraping and processing pipelines.',
-      'Collaborated with designers to ensure seamless frontend-backend integration.',
-      'Performed regular security audits and performance tuning.'
-    ],
-    skills: ['Python', 'Django', 'SQLAlchemy', 'Postgres', 'Git'],
-    color: '#4ade80'
+    year: '',
+    title: '',
+    company: '',
+    description: '',
+    responsibilities: [],
+    skills: [],
+    color: ''
+  },
+  {
+    year: '',
+    title: '',
+    company: '',
+    description: '',
+    responsibilities: [],
+    skills: [],
+    color: ''
   }
 ];
 

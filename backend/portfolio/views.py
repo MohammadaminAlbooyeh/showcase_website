@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import AboutMe, PortfolioItem, Project, Resume, Contact
+from .models import AboutMe, PortfolioItem, Project, Resume, Contact, ContactMessage
 from .serializers import (
     AboutMeSerializer, 
     PortfolioItemSerializer, 
@@ -83,3 +83,14 @@ class ContactView(APIView):
             'status': 'error',
             'errors': serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
+
+class ContactMessageView(APIView):
+    def post(self, request):
+        data = request.data
+        ContactMessage.objects.create(
+            name=data.get('name'),
+            email=data.get('email'),
+            subject=data.get('subject'),
+            message=data.get('message')
+        )
+        return Response({"message": "Email saved successfully!"}, status=status.HTTP_201_CREATED)

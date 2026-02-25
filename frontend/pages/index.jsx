@@ -172,7 +172,7 @@ export default function Home() {
                     minHeight: { xs: '120px', md: '200px' }
                   }}>
                     <Typewriter texts={[
-                      "Hi, I'm Amin Albooyeh,| a Python Developer", 
+                      "Hi, I'm Amin Albooyeh,| a Software Engineer", 
                       "I have +8 Years of| Professional Experience"
                     ]} />
                   </Box>

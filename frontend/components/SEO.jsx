@@ -53,9 +53,9 @@ const SEO = ({
             name: 'Your Name',
             url: currentUrl,
             sameAs: [
-              'https://github.com/yourusername',
-              'https://linkedin.com/in/yourusername',
-              // Add other social links
+              'https://github.com/MohammadaminAlbooyeh?tab=overview&from=2026-02-01&to=2026-02-23',
+              'https://www.linkedin.com/in/amin-a-95a541176/',
+              'mailto:amin.albooyeh@gmail.com'
             ],
             jobTitle: 'Full Stack Developer',
             image: image,
