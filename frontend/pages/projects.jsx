@@ -217,6 +217,16 @@ export default function Projects() {
 
   const projects = [
     {
+      id: 0,
+      title: 'Air Quality Index Map',
+      description: 'An interactive map visualizing real-time air quality (AQI) data across locations, with filters and color-coded overlays.',
+      color: '#16a34a',
+      link: '#',
+      icon: '🗺️',
+      tags: ['Data Visualization', 'API', 'Map'],
+      video: '/videos/aqi-map.mp4'
+    },
+    {
       id: 1,
       title: 'To-Do List',
       description: 'A task management application to help organize and track daily tasks efficiently. Features incluyen task prioritization and status tracking.',

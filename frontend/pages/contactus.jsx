@@ -188,8 +188,8 @@ export default function ContactUs() {
 	const contactInfo = [
 		{ icon: <EmailIcon />, label: 'Email', value: 'amin.albooyeh@gmail.com', color: '#60a5fa', copyable: true },
 		{ icon: <LocationOnIcon />, label: 'Location', value: 'Turin, Italy', color: '#60a5fa' },
-		{ icon: <LinkedInIcon />, label: 'LinkedIn', value: 'https://www.linkedin.com/in/amin-a-95a541176/', color: '#60a5fa' },
-		{ icon: <GitHubIcon />, label: 'GitHub', value: 'https://github.com/MohammadaminAlbooyeh?tab=overview&from=2026-02-01&to=2026-02-23', color: '#60a5fa' },
+		{ icon: <LinkedInIcon />, label: 'LinkedIn', value: 'LinkedIn Profile', color: '#60a5fa', link: 'https://www.linkedin.com/in/amin-a-95a541176/' },
+		{ icon: <GitHubIcon />, label: 'GitHub', value: 'GitHub Profile', color: '#60a5fa', link: 'https://github.com/MohammadaminAlbooyeh' },
 	];
 
 	const handleShowFullAddress = (address) => {
@@ -268,7 +268,13 @@ export default function ContactUs() {
 								<Grid item xs={12} sm={6} md={3} key={i}>
 									<TiltCard>
 										<Box 
-											onClick={info.copyable ? () => handleCopy(info.value) : undefined}
+											onClick={() => {
+												if (info.link) {
+													window.open(info.link, '_blank');
+												} else if (info.copyable) {
+													handleCopy(info.value);
+												}
+											}}
 											sx={{ 
 												display: 'flex', 
 												alignItems: 'center', 
@@ -277,7 +283,7 @@ export default function ContactUs() {
 												borderRadius: 4,
 												background: 'rgba(255, 255, 255, 0.03)',
 												border: '1px solid rgba(255, 255, 255, 0.05)',
-												cursor: info.copyable ? 'pointer' : 'default',
+												cursor: (info.copyable || info.link) ? 'pointer' : 'default',
 												transition: 'all 0.3s ease',
 												height: '100%',
 												'&:hover': {
