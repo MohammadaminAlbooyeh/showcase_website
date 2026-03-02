@@ -55,13 +55,52 @@ jobs:
           du -sh frontend/out || true
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+        # Ensure `AWS_REGION` is set (fallback to eu-north-1) and then configure credentials
+        - name: Ensure AWS region
+          run: |
+            if [ -z "${{ secrets.AWS_REGION }}" ]; then
+              echo "AWS_REGION=eu-north-1" >> $GITHUB_ENV
+              echo "Warning: secrets.AWS_REGION is not set — defaulting to eu-north-1"
+            else
+              echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
+            fi
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v2
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ env.AWS_REGION }}
 
       - name: Sync to S3 via AWS CLI
         run: |
           echo "Syncing frontend/out -> s3://${{ secrets.S3_BUCKET }}"
-          aws s3 sync frontend/out s3://${{ secrets.S3_BUCKET }} --acl public-read --delete
+          # Fail early if output folder missing or empty
+          if [ ! -d frontend/out ] || [ -z "$(ls -A frontend/out)" ]; then
+            echo "ERROR: frontend/out is missing or empty. Build may have produced no static files." >&2
+            echo "Run locally: cd frontend && npm run build && ls -la out" >&2
+            exit 1
+          fi
+
+          echo "Checking S3 bucket accessibility"
+          if ! aws s3api head-bucket --bucket "${{ secrets.S3_BUCKET }}" >/dev/null 2>&1; then
+            echo "ERROR: S3 bucket '${{ secrets.S3_BUCKET }}' not found or access denied." >&2
+            echo "Ensure the bucket exists and the provided AWS credentials (repo secrets) have s3:ListBucket and s3:PutObject permissions." >&2
+            exit 1
+          fi
+
+          # Retry sync up to 3 times to mitigate transient network issues
+          set -o pipefail
+          for i in 1 2 3; do
+            echo "aws s3 sync attempt $i"
+            if aws s3 sync frontend/out s3://${{ secrets.S3_BUCKET }} --acl public-read --delete; then
+              echo "Sync succeeded"
+              break
+            fi
+            if [ "$i" = "3" ]; then
+              echo "ERROR: aws s3 sync failed after 3 attempts" >&2
+              exit 1
+            fi
+            echo "Retrying in 5s..."
+            sleep 5
+          done
