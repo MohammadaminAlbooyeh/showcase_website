@@ -70,6 +70,40 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Validate required AWS/GitHub secrets
+        run: |
+          echo "Validating required GitHub Secrets (presence only)..."
+          missing=0
+          if [ -z "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then
+            echo "AWS_ACCESS_KEY_ID: MISSING"
+            missing=1
+          else
+            echo "AWS_ACCESS_KEY_ID: PRESENT"
+          fi
+          if [ -z "${{ secrets.AWS_SECRET_ACCESS_KEY }}" ]; then
+            echo "AWS_SECRET_ACCESS_KEY: MISSING"
+            missing=1
+          else
+            echo "AWS_SECRET_ACCESS_KEY: PRESENT"
+          fi
+          if [ -z "${{ secrets.AWS_REGION }}" ]; then
+            echo "AWS_REGION: MISSING"
+            missing=1
+          else
+            echo "AWS_REGION: PRESENT"
+          fi
+          if [ -z "${{ secrets.S3_BUCKET }}" ]; then
+            echo "S3_BUCKET: MISSING"
+            missing=1
+          else
+            echo "S3_BUCKET: PRESENT"
+          fi
+          if [ "$missing" -eq 1 ]; then
+            echo "One or more required secrets are missing. Add them under Settings → Secrets → Actions." >&2
+            exit 1
+          fi
+          echo "All required secrets appear present."
+
       - name: Sync to S3 via AWS CLI
         run: |
           echo "Syncing frontend/out -> s3://${{ secrets.S3_BUCKET }}"
