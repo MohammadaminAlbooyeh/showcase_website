@@ -70,7 +70,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-          
       - name: Validate required AWS/GitHub secrets
         run: |
           echo "Validating required GitHub Secrets (presence only)..."
@@ -108,7 +107,6 @@ jobs:
       - name: Sync to S3 via AWS CLI
         run: |
           echo "Syncing frontend/out -> s3://${{ secrets.S3_BUCKET }}"
-          # Fail early if output folder missing or empty
           if [ ! -d frontend/out ] || [ -z "$(ls -A frontend/out)" ]; then
             echo "ERROR: frontend/out is missing or empty. Build may have produced no static files." >&2
             echo "Run locally: cd frontend && npm run build && ls -la out" >&2
@@ -122,11 +120,10 @@ jobs:
             exit 1
           fi
 
-          # Retry sync up to 3 times to mitigate transient network issues
           set -o pipefail
           for i in 1 2 3; do
             echo "aws s3 sync attempt $i"
-            if aws s3 sync frontend/out s3://${{ secrets.S3_BUCKET }} --acl public-read --delete; then
+            if aws s3 sync frontend/out s3://${{ secrets.S3_BUCKET }} --delete; then
               echo "Sync succeeded"
               break
             fi
