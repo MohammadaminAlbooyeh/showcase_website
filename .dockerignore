@@ -1,0 +1,16 @@
+.venv
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+env/
+node_modules
+dist
+build
+.next
+.git
+*.sqlite3
+.DS_Store
+venv/
+frontend/node_modules

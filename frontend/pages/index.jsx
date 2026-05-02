@@ -295,25 +295,7 @@ export default function Home() {
                   <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>Years Exp.</Typography>
                 </Box>
 
-                {/* Bottom Stats - Static */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: '15%',
-                    right: '-10%',
-                    zIndex: 3,
-                    background: 'rgba(15, 23, 42, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    p: 2.5,
-                    borderRadius: 4,
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                    display: { xs: 'none', md: 'block' },
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
-                  }}
-                >
-                  <Typography variant="h5" sx={{ color: '#3b82f6', fontWeight: 900 }}>100+</Typography>
-                  <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>Projects</Typography>
-                </Box>
+
               </MotionBox>
             </Grid>
           </Grid>
