@@ -26,8 +26,8 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import axios from 'axios';
 import API_BASE_URL from '../config/api';
 
-const MotionPaper = motion(Paper);
-const MotionBox = motion(Box);
+const MotionPaper = motion.create(Paper);
+const MotionBox = motion.create(Box);
 
 // --- 3D Tilt Component ---
 const TiltCard = ({ children, color }) => {
@@ -266,7 +266,7 @@ export default function ContactUs() {
 
 						<Grid container spacing={3} justifyContent="center">
 							{contactInfo.map((info, i) => (
-								<Grid item xs={12} sm={6} md={3} key={i}>
+								<Grid size={{ xs: 12, sm: 6, md: 3 }} key={i}>
 									<TiltCard>
 										<Box 
 											onClick={() => {
@@ -325,7 +325,7 @@ export default function ContactUs() {
 
 				{/* Bottom Section: Form */}
 				<Grid container justifyContent="center">
-					<Grid item xs={12} md={8} lg={7}>
+					<Grid size={{ xs: 12, md: 8, lg: 7 }}>
 						<MotionPaper
 							initial={{ opacity: 0, y: 30 }}
 							animate={{ opacity: 1, y: 0 }}
@@ -388,7 +388,7 @@ export default function ContactUs() {
 									<form key="form" onSubmit={handleSubmit}>
 										<Typography variant="h5" sx={{ fontWeight: 700, mb: 4, textAlign: 'center' }}>Send a Message</Typography>
 										<Grid container spacing={3}>
-											<Grid item xs={12} sm={6}>
+											<Grid size={{ xs: 12, sm: 6 }}>
 												<TextField
 													fullWidth
 													label="Your Name"
@@ -401,7 +401,7 @@ export default function ContactUs() {
 													sx={fieldStyles}
 												/>
 											</Grid>
-											<Grid item xs={12} sm={6}>
+											<Grid size={{ xs: 12, sm: 6 }}>
 												<TextField
 													fullWidth
 													label="Your Email"
@@ -414,7 +414,7 @@ export default function ContactUs() {
 													sx={fieldStyles}
 												/>
 											</Grid>
-											<Grid item xs={12}>
+											<Grid size={12}>
 												<TextField
 													fullWidth
 													label="Subject"
@@ -427,7 +427,7 @@ export default function ContactUs() {
 													sx={fieldStyles}
 												/>
 											</Grid>
-											<Grid item xs={12}>
+											<Grid size={12}>
 												<TextField
 													fullWidth
 													multiline
@@ -448,7 +448,7 @@ export default function ContactUs() {
 													}}
 												/>
 											</Grid>
-											<Grid item xs={12}>
+											<Grid size={12}>
 												{errors.general && (
 													<Alert severity="error" sx={{ mb: 3, borderRadius: 3 }}>
 														{errors.general}
@@ -544,20 +544,3 @@ const fieldStyles = {
 		mt: 1
 	}
 };
-
-function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    axios.post(`${API_BASE_URL}/api/contact/`, {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        subject: formData.get('subject'),
-        message: formData.get('message')
-    })
-    .then(response => {
-        alert('Message sent successfully!');
-    })
-    .catch(error => {
-        alert('Failed to send message.');
-    });
-}

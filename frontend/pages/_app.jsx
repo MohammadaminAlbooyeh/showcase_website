@@ -1,3 +1,4 @@
+import { HelmetProvider } from 'react-helmet-async';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { ThemeProvider } from '@mui/material/styles';
@@ -69,15 +70,17 @@ function MyApp({ Component, pageProps }) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <SEO {...getPageMetadata()} />
-      <NavBar />
-      <main className="content">
-        <Component {...pageProps} />
-      </main>
-      <Footer />
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <SEO {...getPageMetadata()} />
+        <NavBar />
+        <main className="content">
+          <Component {...pageProps} />
+        </main>
+        <Footer />
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

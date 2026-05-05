@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useMotionValue } from 'framer-motion';
 import { useTheme } from '@mui/material/styles';
 
@@ -8,11 +8,26 @@ const InteractiveBackground = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const controls = useAnimation();
+  const [particles, setParticles] = useState([]);
+
+  useEffect(() => {
+    // Generate random particles only on client to avoid hydration mismatch
+    const randomParticles = Array.from({ length: 20 }).map((_, index) => ({
+      id: index,
+      width: Math.random() * 4 + 2,
+      height: Math.random() * 4 + 2,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: Math.random() * 3 + 2,
+      delay: Math.random() * 2,
+    }));
+    setParticles(randomParticles);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (!containerRef.current) return;
-      
+
       const { left, top, width, height } = containerRef.current.getBoundingClientRect();
       const x = (e.clientX - left) / width;
       const y = (e.clientY - top) / height;
@@ -60,28 +75,28 @@ const InteractiveBackground = () => {
       }}
     >
       {/* Animated particles */}
-      {Array.from({ length: 20 }).map((_, index) => (
+      {particles.map((particle) => (
         <motion.div
-          key={index}
+          key={particle.id}
           style={{
             position: 'absolute',
-            width: Math.random() * 4 + 2,
-            height: Math.random() * 4 + 2,
+            width: particle.width,
+            height: particle.height,
             borderRadius: '50%',
             backgroundColor: theme.palette.primary.main,
             opacity: 0.1,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
           }}
           animate={{
             y: [0, -20, 0],
             opacity: [0.1, 0.2, 0.1],
           }}
           transition={{
-            duration: Math.random() * 3 + 2,
+            duration: particle.duration,
             repeat: Infinity,
             ease: 'easeInOut',
-            delay: Math.random() * 2,
+            delay: particle.delay,
           }}
         />
       ))}

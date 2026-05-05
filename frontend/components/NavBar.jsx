@@ -214,41 +214,18 @@ export default function NavBar() {
                 <Link
                   key={page.href}
                   href={page.href}
-                  passHref
-                  style={{ textDecoration: 'none' }}
+                  style={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    position: 'relative',
+                    padding: '8px 16px',
+                    fontSize: '1rem',
+                    fontWeight: isActiveRoute(page.href) ? 700 : 500,
+                    display: 'inline-block',
+                    transition: 'all 0.3s ease',
+                  }}
                 >
-                  <Box
-                    sx={{
-                      color: 'text.primary',
-                      position: 'relative',
-                      px: 2,
-                      py: 1,
-                      fontSize: '1rem',
-                      fontWeight: 500,
-                      cursor: 'pointer',
-                      display: 'inline-block',
-                      transition: 'all 0.3s ease',
-                      '&::after': {
-                        content: '""',
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '2px',
-                        background: 'primary.main',
-                        transform: isActiveRoute(page.href) ? 'scaleX(1)' : 'scaleX(0)',
-                        transition: 'transform 0.3s ease'
-                      },
-                      '&:hover::after': {
-                        transform: 'scaleX(1)'
-                      },
-                      '&:hover': {
-                        transform: 'scale(1.05)'
-                      }
-                    }}
-                  >
-                    {page.label}
-                  </Box>
+                  {page.label}
                 </Link>
               ))}
             </Box>
@@ -275,11 +252,10 @@ export default function NavBar() {
                   <Link
                     key={page.href}
                     href={page.href}
-                    passHref
-                    style={{ textDecoration: 'none' }}
+                    style={{ textDecoration: 'none', display: 'block' }}
+                    onClick={() => setMobileOpen(false)}
                   >
                     <ListItem
-                      onClick={() => setMobileOpen(false)}
                       sx={{ 
                         py: 2,
                         borderBottom: '1px solid',

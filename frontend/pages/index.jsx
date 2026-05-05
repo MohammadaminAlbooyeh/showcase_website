@@ -1,12 +1,13 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import * as React from 'react';
-import { 
-  Box, 
-  Typography, 
-  Button, 
-  Container, 
-  Grid, 
-  Stack, 
+import { useRouter } from 'next/router';
+import {
+  Box,
+  Typography,
+  Button as MUIButton,
+  Container,
+  Grid,
+  Stack,
   Chip,
   alpha,
   useTheme
@@ -18,8 +19,8 @@ import TerminalIcon from '@mui/icons-material/Terminal';
 import StorageIcon from '@mui/icons-material/Storage';
 import InteractiveBackground from '../components/InteractiveBackground';
 
-const MotionBox = motion(Box);
-const MotionTypography = motion(Typography);
+const MotionBox = motion.create(Box);
+const MotionTypography = motion.create(Typography);
 
 const Typewriter = ({ texts }) => {
   const [index, setIndex] = React.useState(0);
@@ -103,6 +104,19 @@ const itemVariants = {
 
 export default function Home() {
   const theme = useTheme();
+  const router = useRouter();
+
+  const handleProjectsClick = (e) => {
+    e?.preventDefault();
+    console.log('Button clicked');
+    if (router) {
+      console.log('Router exists, attempting push');
+      router.push('/projects/');
+    } else {
+      console.log('Router missing, using window.location');
+      window.location.href = '/projects/';
+    }
+  };
 
   const skills = [
     { label: 'Django 4+', icon: <StorageIcon sx={{ fontSize: 16 }} />, color: '#60a5fa' },
@@ -119,16 +133,16 @@ export default function Home() {
         <meta name="description" content="Amin Albooyeh - Experienced software developer in Java and Python (Django). Explore portfolio, projects, and resume." />
       </Helmet>
 
-      <Box sx={{ 
-        minHeight: '100vh', 
-        display: 'flex', 
+      <Box sx={{
+        minHeight: '100vh',
+        display: 'flex',
         alignItems: 'center',
         position: 'relative',
         overflow: 'hidden',
         background: '#0a0a0a',
       }}>
         <InteractiveBackground />
-        
+
         {/* Animated Background Orbs */}
         <Box sx={{
           position: 'absolute',
@@ -146,16 +160,16 @@ export default function Home() {
         <Container maxWidth={false} sx={{ px: { xs: 2, md: 8 }, py: { xs: 8, md: 0 } }}>
           <Grid container spacing={8} alignItems="center">
             {/* Left Column: Text Content */}
-            <Grid item xs={12} md={7} sx={{ order: { xs: 2, md: 1 } }}>
+            <Grid size={{ xs: 12, md: 7 }} sx={{ order: { xs: 2, md: 1 } }}>
               <MotionBox
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
               >
-                <MotionTypography 
+                <MotionTypography
                   variants={itemVariants}
-                  variant="h1" 
-                  sx={{ 
+                  variant="h1"
+                  sx={{
                     fontSize: { xs: '2.2rem', md: '4rem' },
                     fontWeight: 900,
                     lineHeight: 1.2,
@@ -163,7 +177,7 @@ export default function Home() {
                     color: '#fff',
                   }}
                 >
-                  <Box component="span" sx={{ 
+                  <Box component="span" sx={{
                     background: 'linear-gradient(135deg, #fff 0%, #60a5fa 50%, #fbbf24 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -172,62 +186,63 @@ export default function Home() {
                     minHeight: { xs: '120px', md: '200px' }
                   }}>
                     <Typewriter texts={[
-                      "Hi, I'm Amin Albooyeh,| a Software Engineer", 
+                      "Hi, I'm Amin Albooyeh,| a Software Engineer",
                       "I have +8 Years of| Professional Experience"
                     ]} />
                   </Box>
                 </MotionTypography>
 
-                <MotionTypography 
+                <MotionTypography
                   variants={itemVariants}
-                  variant="h6" 
-                  sx={{ 
-                    color: 'rgba(255, 255, 255, 0.6)', 
-                    mb: 6, 
-                    lineHeight: 1.8, 
+                  variant="h6"
+                  sx={{
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    mb: 6,
+                    lineHeight: 1.8,
                     fontWeight: 400,
                     fontSize: '1.25rem',
                     maxWidth: '800px'
                   }}
                 >
-                  Architecting robust backends with <b>Django</b> and crafting 
-                  seamless interfaces with <b>React</b>. Based in Turin, Italy, 
+                  Architecting robust backends with <b>Django</b> and crafting
+                  seamless interfaces with <b>React</b>. Based in Turin, Italy,
                   dedicated to building high-performance digital solutions.
                 </MotionTypography>
 
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ mb: 8 }}>
-                  <Link href="/projects/" passHref style={{ textDecoration: 'none' }}>
-                    <MotionBox
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      sx={{ 
-                        py: 2, px: 5, 
+                  <Link href="/projects/" prefetch passHref>
+                    <MUIButton
+                      component="a"
+                      variant="contained"
+                      sx={{
+                        py: 2,
+                        px: 5,
                         borderRadius: 3,
                         background: '#fff',
                         color: '#000',
                         fontWeight: 700,
                         fontSize: '1.1rem',
                         textTransform: 'none',
-                        display: 'inline-block',
-                        cursor: 'pointer',
+                        boxShadow: 'none',
                         textDecoration: 'none',
-                        border: 'none',
                         '&:hover': {
                           background: '#f1f5f9',
                           boxShadow: '0 10px 20px -5px rgba(255,255,255,0.2)'
+                        },
+                        '&:active': {
+                          background: '#f1f5f9',
                         }
                       }}
                     >
                       View Projects
-                    </MotionBox>
+                    </MUIButton>
                   </Link>
                 </Stack>
               </MotionBox>
             </Grid>
 
             {/* Right Column: Visual Element */}
-            <Grid item xs={12} md={5} sx={{ order: { xs: 1, md: 2 } }}>
+            <Grid size={{ xs: 12, md: 5 }} sx={{ order: { xs: 1, md: 2 } }}>
               <MotionBox
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}

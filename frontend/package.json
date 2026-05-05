@@ -14,12 +14,13 @@
     "@mui/icons-material": "^7.3.2",
     "@mui/material": "^7.3.2",
     "@mui/styles": "^6.5.0",
+    "axios": "^1.4.0",
     "framer-motion": "^12.23.26",
-    "next": "^15.4.6",
+    "next": "^15.5.15",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-helmet": "^6.1.0",
-    "sitemap": "^8.0.0",
-    "axios": "^1.4.0"
+    "react-helmet-async": "^3.0.0",
+    "sitemap": "^8.0.0"
   }
 }

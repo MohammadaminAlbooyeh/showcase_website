@@ -124,7 +124,7 @@ const SkillsChart = () => {
             timeout={300 + index * 100}
             style={{ transitionDelay: `${index * 50}ms` }}
           >
-            <Grid item xs={12}>
+            <Grid size={12}>
               <Box
                 sx={{
                   animation: `${slideIn} 0.5s ease-out forwards`,

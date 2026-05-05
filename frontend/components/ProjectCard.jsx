@@ -13,7 +13,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import OptimizedImage from './OptimizedImage';
 
-const MotionCard = motion(Card);
+const MotionCard = motion.create(Card);
 
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
