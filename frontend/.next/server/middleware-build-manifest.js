@@ -26,9 +26,8 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_react-dom_cjs_react-dom-client_development_js.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_react-dom_client_js-_pages-dir-browser_node_mo-19f38f.js",
       "static/chunks/main.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Button_index_js.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Chip_index_js.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_styled-jsx_style_js-_pages-dir-browser_node_mo-1dd5b2.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_styled-jsx_style_js-_pages-dir-browser_node_mo-6fc836.js",
       "static/chunks/pages/index.js"
     ],
     "/_app": [
@@ -49,10 +48,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_emotion_cache_dist_emotion-cache_browser_devel-88aaf1.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_emotion_sheet_dist_emotion-sheet_development_e-fa04cf.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_framer-motion_dist_es_animation_hooks_use-anim-93aac1.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_framer-motion_dist_es_index_mjs-_pages-dir-bro-e31060.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_hoist-non-react-statics_dist_hoist-non-react-s-de7bfb.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_framer-motion_dist_es_animation_hooks_use-anim-dae4a8.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_hoist-non-react-statics_dist_hoist-non-react-s-a90e78.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_motion-dom_dist_es_index_mjs.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_motion-dom_dist_es_layout_LayoutAnimationBuild-8e5f2e.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_motion-dom_dist_es_stats_index_mjs-_pages-dir--b7cc3b.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_icons-material_esm_Close_js-_pages-dir-bro-b62476.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_AppBar_index_js-_pages-dir-br-1b4e1c.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Box_index_js-_pages-dir-brows-ff9ca6.js",
@@ -60,12 +60,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_IconButton_index_js-_pages-di-e8910d.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Modal_index_js-_pages-dir-bro-731076.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_className_index_js-_pages-dir-9cb7b2.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_styles_index_js-_pages-dir-br-b770a3.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_private-theming_esm_index_js-_pages-dir-br-150899.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_system_esm_InitColorSchemeScript_index_js--852d9e.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_next_dist_build_polyfills_object-assign_js-_pa-b0089c.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_react-is_index_js-_pages-dir-browser_node_modu-9d64b7.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_swc_helpers_esm__tagged_template_literal_js-_p-6d875f.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_styles_defaultTheme_js-_pages-5b8922.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_styles_makeStyles_js-_pages-d-e0c9f1.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_styled-engine_esm_index_js-_pages-dir-brow-ff7db6.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_next_dist_build_polyfills_object-assign_js-_pa-1b0e7c.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_react-helmet-async_lib_index_esm_js-_pages-dir-614a14.js",
       "static/chunks/pages/_app.js"
     ],
     "/_error": [
@@ -102,12 +101,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_react-dom_cjs_react-dom-client_development_js.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_react-dom_client_js-_pages-dir-browser_node_mo-19f38f.js",
       "static/chunks/main.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Button_index_js.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_FilledInput_index_js-_pages-d-4d4a6b.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Input_index_js-_pages-dir-bro-cd8d2f.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_utils_esm_useSlotProps_index_js-_pages-dir-8b305d.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_axios_index_js.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_next_dist_compiled_buffer_index_js-_pages-dir--8b074c.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Button_index_js.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_icons-material_esm_CheckCircle_js-_pages-d-21cd43.js",
       "static/chunks/pages/contactus.js"
     ],
     "/projects": [
@@ -149,8 +147,8 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_react-dom_cjs_react-dom-client_development_js.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_react-dom_client_js-_pages-dir-browser_node_mo-19f38f.js",
       "static/chunks/main.js",
-      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Button_index_js.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Chip_index_js.js",
+      "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_material_esm_Button_index_js.js",
       "static/chunks/defaultVendors-_pages-dir-browser_node_modules_mui_icons-material_esm_Download_js-_pages-dir--db29df.js",
       "static/chunks/pages/resume.js"
     ]

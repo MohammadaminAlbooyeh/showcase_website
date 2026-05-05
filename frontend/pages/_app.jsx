@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
     }
 
     // Pre-fetch all routes for instant navigation
-    ['/', '/projects/', '/resume/', '/contactus/'].forEach(route => {
+    ['/', '/projects', '/resume', '/contactus'].forEach(route => {
       router.prefetch(route);
     });
   }, []);

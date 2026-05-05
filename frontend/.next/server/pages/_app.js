@@ -623,6 +623,16 @@ module.exports = require("react-dom");
 
 /***/ }),
 
+/***/ "react-helmet-async":
+/*!*************************************!*\
+  !*** external "react-helmet-async" ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = require("react-helmet-async");
+
+/***/ }),
+
 /***/ "react-transition-group":
 /*!*****************************************!*\
   !*** external "react-transition-group" ***!
@@ -680,7 +690,7 @@ module.exports = require("zlib");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["defaultVendors-_pages-dir-node_node_modules_next_dist_shared_lib_encode-uri-path_js-_pages-di-dfedf0","defaultVendors-_pages-dir-node_node_modules_mui_icons-material_esm_Close_js-_pages-dir-node_n-164caf","defaultVendors-_pages-dir-node_node_modules_mui_material_esm_IconButton_index_js-_pages-dir-n-8556bf","defaultVendors-_pages-dir-node_node_modules_next_dist_client_detect-domain-locale_js-_pages-d-d8770f","defaultVendors-_pages-dir-node_node_modules_next_dist_shared_lib_router_router_js-_pages-dir--b49acb","default-_pages-dir-node_pages__app_jsx"], () => (__webpack_exec__("(pages-dir-node)/./pages/_app.jsx")));
+var __webpack_exports__ = __webpack_require__.X(0, ["defaultVendors-_pages-dir-node_node_modules_next_dist_shared_lib_encode-uri-path_js-_pages-di-dfedf0","defaultVendors-_pages-dir-node_node_modules_mui_icons-material_esm_Close_js-_pages-dir-node_n-164caf","defaultVendors-_pages-dir-node_node_modules_mui_material_esm_IconButton_index_js-_pages-dir-n-8556bf","defaultVendors-_pages-dir-node_node_modules_next_dist_client_add-base-path_js-_pages-dir-node-ae743a","defaultVendors-_pages-dir-node_node_modules_next_dist_shared_lib_router_router_js-_pages-dir--2ef2f2","default-_pages-dir-node_pages__app_jsx"], () => (__webpack_exec__("(pages-dir-node)/./pages/_app.jsx")));
 module.exports = __webpack_exports__;
 
 })();

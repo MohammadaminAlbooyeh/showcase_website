@@ -1,10 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import {
   Box,
   Typography,
-  Button as MUIButton,
   Container,
   Grid,
   Stack,
@@ -13,7 +11,6 @@ import {
   useTheme
 } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 import CodeIcon from '@mui/icons-material/Code';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -104,19 +101,6 @@ const itemVariants = {
 
 export default function Home() {
   const theme = useTheme();
-  const router = useRouter();
-
-  const handleProjectsClick = (e) => {
-    e?.preventDefault();
-    console.log('Button clicked');
-    if (router) {
-      console.log('Router exists, attempting push');
-      router.push('/projects/');
-    } else {
-      console.log('Router missing, using window.location');
-      window.location.href = '/projects/';
-    }
-  };
 
   const skills = [
     { label: 'Django 4+', icon: <StorageIcon sx={{ fontSize: 16 }} />, color: '#60a5fa' },
@@ -210,33 +194,32 @@ export default function Home() {
                 </MotionTypography>
 
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ mb: 8 }}>
-                  <Link href="/projects/" prefetch passHref>
-                    <MUIButton
-                      component="a"
-                      variant="contained"
-                      sx={{
-                        py: 2,
-                        px: 5,
-                        borderRadius: 3,
-                        background: '#fff',
-                        color: '#000',
-                        fontWeight: 700,
-                        fontSize: '1.1rem',
-                        textTransform: 'none',
-                        boxShadow: 'none',
-                        textDecoration: 'none',
-                        '&:hover': {
-                          background: '#f1f5f9',
-                          boxShadow: '0 10px 20px -5px rgba(255,255,255,0.2)'
-                        },
-                        '&:active': {
-                          background: '#f1f5f9',
-                        }
-                      }}
-                    >
-                      View Projects
-                    </MUIButton>
-                  </Link>
+                  <a
+                    href="/projects"
+                    style={{
+                      padding: '16px 20px',
+                      borderRadius: '12px',
+                      background: '#fff',
+                      color: '#000',
+                      fontWeight: 700,
+                      fontSize: '1.1rem',
+                      display: 'inline-block',
+                      cursor: 'pointer',
+                      textDecoration: 'none',
+                      border: 'none',
+                      transition: 'all 0.3s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = '#f1f5f9';
+                      e.currentTarget.style.boxShadow = '0 10px 20px -5px rgba(255,255,255,0.2)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#fff';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
+                  >
+                    View Projects
+                  </a>
                 </Stack>
               </MotionBox>
             </Grid>

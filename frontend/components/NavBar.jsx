@@ -11,7 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Container from '@mui/material/Container';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -20,9 +19,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 const pages = [
   { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects/' },
-  { label: 'Resume', href: '/resume/' },
-  { label: 'Contact', href: '/contactus/' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Resume', href: '/resume' },
+  { label: 'Contact', href: '/contactus' },
 ];
 
 export default function NavBar() {
@@ -202,16 +201,16 @@ export default function NavBar() {
             </Box>
 
             {/* Desktop menu */}
-            <Box 
-              sx={{ 
-                flexGrow: 1, 
+            <Box
+              sx={{
+                flexGrow: 1,
                 display: { xs: 'none', md: 'flex' },
                 justifyContent: 'flex-end',
                 gap: 2
               }}
             >
               {pages.map((page) => (
-                <Link
+                <a
                   key={page.href}
                   href={page.href}
                   style={{
@@ -226,7 +225,7 @@ export default function NavBar() {
                   }}
                 >
                   {page.label}
-                </Link>
+                </a>
               ))}
             </Box>
 
@@ -249,14 +248,14 @@ export default function NavBar() {
             >
               <List sx={{ pt: 2 }}>
                 {pages.map((page) => (
-                  <Link
+                  <a
                     key={page.href}
                     href={page.href}
                     style={{ textDecoration: 'none', display: 'block' }}
                     onClick={() => setMobileOpen(false)}
                   >
                     <ListItem
-                      sx={{ 
+                      sx={{
                         py: 2,
                         borderBottom: '1px solid',
                         borderColor: 'divider',
@@ -266,7 +265,7 @@ export default function NavBar() {
                         }
                       }}
                     >
-                      <ListItemText 
+                      <ListItemText
                         primary={page.label}
                         sx={{
                           '& .MuiTypography-root': {
@@ -277,7 +276,7 @@ export default function NavBar() {
                         }}
                       />
                     </ListItem>
-                  </Link>
+                  </a>
                 ))}
               </List>
             </Drawer>
