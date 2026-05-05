@@ -1,21 +1,20 @@
 from django.core.cache import cache
-from rest_framework.exceptions import Throttled
+
 
 class ContactRateThrottle:
-    def __init__(self):
-        self.rate = 5  # Number of allowed requests
-        self.period = 3600  # Time period in seconds (1 hour)
-        
+    """
+    Rate throttle for contact form submissions using Django's cache.
+    Limits each email address to 5 requests per hour.
+    """
+    RATE = 5
+    PERIOD = 3600
+
     def allow_request(self, email):
         cache_key = f'contact_rate_{email}'
         requests = cache.get(cache_key, 0)
-        
-        if requests >= self.rate:
+
+        if requests >= self.RATE:
             return False
-            
-        if requests == 0:
-            cache.set(cache_key, 1, self.period)
-        else:
-            cache.incr(cache_key)
-            
+
+        cache.set(cache_key, requests + 1, self.PERIOD)
         return True

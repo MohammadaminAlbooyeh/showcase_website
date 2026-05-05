@@ -240,7 +240,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/@mui","vendor-chunks/next","vendor-chunks/@swc"], () => (__webpack_exec__("(pages-dir-node)/./pages/_document.jsx")));
+var __webpack_exports__ = __webpack_require__.X(0, ["defaultVendors-_pages-dir-node_node_modules_next_dist_shared_lib_encode-uri-path_js-_pages-di-dfedf0","defaultVendors-_pages-dir-node_node_modules_next_document_js"], () => (__webpack_exec__("(pages-dir-node)/./pages/_document.jsx")));
 module.exports = __webpack_exports__;
 
 })();

@@ -1,34 +1,37 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import AboutMe, PortfolioItem, Project, Resume, Contact, ContactMessage
+from .models import AboutMe, PortfolioItem, Project, Resume, Contact
 from .serializers import (
-    AboutMeSerializer, 
-    PortfolioItemSerializer, 
-    ProjectSerializer, 
+    AboutMeSerializer,
+    PortfolioItemSerializer,
+    ProjectSerializer,
     ResumeSerializer,
     ContactSerializer
 )
-from .models import AboutMe, PortfolioItem, Project, Resume
-from .serializers import AboutMeSerializer, PortfolioItemSerializer, ProjectSerializer, ResumeSerializer
 
 class AboutMeViewSet(viewsets.ModelViewSet):
     queryset = AboutMe.objects.all()
     serializer_class = AboutMeSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class PortfolioItemViewSet(viewsets.ModelViewSet):
     queryset = PortfolioItem.objects.all()
     serializer_class = PortfolioItemSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class ResumeViewSet(viewsets.ModelViewSet):
     queryset = Resume.objects.all()
     serializer_class = ResumeSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 from .utils import ContactRateThrottle
 
@@ -66,7 +69,7 @@ class ContactView(APIView):
                     subject,
                     message,
                     settings.DEFAULT_FROM_EMAIL,
-                    ['amin.albooye@gmail.com'],
+                    [settings.ADMIN_EMAIL],
                     fail_silently=False,
                 )
                 return Response({
@@ -83,14 +86,3 @@ class ContactView(APIView):
             'status': 'error',
             'errors': serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
-
-class ContactMessageView(APIView):
-    def post(self, request):
-        data = request.data
-        ContactMessage.objects.create(
-            name=data.get('name'),
-            email=data.get('email'),
-            subject=data.get('subject'),
-            message=data.get('message')
-        )
-        return Response({"message": "Email saved successfully!"}, status=status.HTTP_201_CREATED)

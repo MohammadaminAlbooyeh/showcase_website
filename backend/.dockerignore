@@ -1,0 +1,36 @@
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.venv
+venv
+env
+
+# Django
+*.sqlite3
+.env
+.env.local
+.env*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.gitignore
+
+# Development
+.pytest_cache
+.coverage
+htmlcov
+dist
+build
+
+# Git
+.git
+.gitattributes

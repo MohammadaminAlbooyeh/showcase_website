@@ -24,6 +24,7 @@ import SendIcon from '@mui/icons-material/Send';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 
 const MotionPaper = motion(Paper);
 const MotionBox = motion(Box);
@@ -547,7 +548,7 @@ const fieldStyles = {
 function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    axios.post('/api/contact/', {
+    axios.post(`${API_BASE_URL}/api/contact/`, {
         name: formData.get('name'),
         email: formData.get('email'),
         subject: formData.get('subject'),

@@ -2,46 +2,29 @@
 Django==4.2.6
 djangorestframework==3.14.0
 django-cors-headers==4.3.0
-django-filter==23.3.0  # For advanced filtering capabilities
+django-filter==23.3.0
 
 # Production Server
 gunicorn==21.2.0
-whitenoise==6.5.0  # For serving static files in production
+whitenoise==6.5.0
 
 # Database and Caching
-# psycopg2-binary==2.9.9  # PostgreSQL adapter (commented out due to Python 3.14 compatibility)
-django-redis==5.4.0  # For caching
+psycopg2-binary==2.9.11
+dj-database-url==2.1.0
+django-redis==5.4.0
 
 # Media Handling
-Pillow==11.0.0  # For image processing
-django-storages==1.14.2  # For handling media files in production
-
-# Blog and Code Snippets Support
-markdown==3.5  # For blog post content
-pygments==2.16.1  # For code syntax highlighting
-django-markdownx==4.0.2  # Markdown editor with image upload support
-django-taggit==4.0.0  # For blog post tagging
+Pillow==11.0.0
+django-storages==1.14.2
 
 # Security and Environment Variables
 python-dotenv==1.0.0
 django-environ==0.11.2
-django-cors-headers==4.3.0
 
-# API Documentation
-drf-yasg==1.21.7  # Swagger/OpenAPI documentation
-
-# Development Tools
-django-debug-toolbar==4.2.0
+# Testing
 pytest==7.4.2
 pytest-django==4.5.2
 coverage==7.3.2
 
 # Performance and Monitoring
-sentry-sdk==1.31.0  # Error tracking
-django-prometheus==2.3.1  # Metrics and monitoring
-
-# Task Queue (if needed for background jobs)
-# celery==5.3.4
-# redis==5.0.1
-
-# Note: Frontend dependencies (React, Vite, etc.) are managed separately in package.json
+sentry-sdk==1.31.0

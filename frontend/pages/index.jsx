@@ -196,12 +196,11 @@ export default function Home() {
                 </MotionTypography>
 
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ mb: 8 }}>
-                  <MotionBox variants={itemVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button 
-                      component={Link}
-                      href="/projects"
-                      variant="contained" 
-                      size="large"
+                  <Link href="/projects/" passHref style={{ textDecoration: 'none' }}>
+                    <MotionBox
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       sx={{ 
                         py: 2, px: 5, 
                         borderRadius: 3,
@@ -210,6 +209,10 @@ export default function Home() {
                         fontWeight: 700,
                         fontSize: '1.1rem',
                         textTransform: 'none',
+                        display: 'inline-block',
+                        cursor: 'pointer',
+                        textDecoration: 'none',
+                        border: 'none',
                         '&:hover': {
                           background: '#f1f5f9',
                           boxShadow: '0 10px 20px -5px rgba(255,255,255,0.2)'
@@ -217,8 +220,8 @@ export default function Home() {
                       }}
                     >
                       View Projects
-                    </Button>
-                  </MotionBox>
+                    </MotionBox>
+                  </Link>
                 </Stack>
               </MotionBox>
             </Grid>

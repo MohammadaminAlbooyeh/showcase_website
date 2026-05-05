@@ -11,7 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,9 +20,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 const pages = [
   { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Resume', href: '/resume' },
-  { label: 'Contact', href: '/contactus' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'Resume', href: '/resume/' },
+  { label: 'Contact', href: '/contactus/' },
 ];
 
 export default function NavBar() {
@@ -218,13 +217,17 @@ export default function NavBar() {
                   passHref
                   style={{ textDecoration: 'none' }}
                 >
-                  <Button
-                    component={motion.button}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <Box
                     sx={{
                       color: 'text.primary',
                       position: 'relative',
+                      px: 2,
+                      py: 1,
+                      fontSize: '1rem',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      display: 'inline-block',
+                      transition: 'all 0.3s ease',
                       '&::after': {
                         content: '""',
                         position: 'absolute',
@@ -238,11 +241,14 @@ export default function NavBar() {
                       },
                       '&:hover::after': {
                         transform: 'scaleX(1)'
+                      },
+                      '&:hover': {
+                        transform: 'scale(1.05)'
                       }
                     }}
                   >
                     {page.label}
-                  </Button>
+                  </Box>
                 </Link>
               ))}
             </Box>
@@ -266,28 +272,36 @@ export default function NavBar() {
             >
               <List sx={{ pt: 2 }}>
                 {pages.map((page) => (
-                  <ListItem 
+                  <Link
                     key={page.href}
-                    component={Link}
                     href={page.href}
-                    onClick={() => setMobileOpen(false)}
-                    sx={{ 
-                      py: 2,
-                      borderBottom: '1px solid',
-                      borderColor: 'divider'
-                    }}
+                    passHref
+                    style={{ textDecoration: 'none' }}
                   >
-                    <ListItemText 
-                      primary={page.label}
-                      sx={{
-                        '& .MuiTypography-root': {
-                          fontSize: '1.125rem',
-                          fontWeight: isActiveRoute(page.href) ? 600 : 400,
-                          color: isActiveRoute(page.href) ? 'primary.main' : 'text.primary'
+                    <ListItem
+                      onClick={() => setMobileOpen(false)}
+                      sx={{ 
+                        py: 2,
+                        borderBottom: '1px solid',
+                        borderColor: 'divider',
+                        cursor: 'pointer',
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.05)'
                         }
                       }}
-                    />
-                  </ListItem>
+                    >
+                      <ListItemText 
+                        primary={page.label}
+                        sx={{
+                          '& .MuiTypography-root': {
+                            fontSize: '1.125rem',
+                            fontWeight: isActiveRoute(page.href) ? 600 : 400,
+                            color: isActiveRoute(page.href) ? 'primary.main' : 'text.primary'
+                          }
+                        }}
+                      />
+                    </ListItem>
+                  </Link>
                 ))}
               </List>
             </Drawer>
