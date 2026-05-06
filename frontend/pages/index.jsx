@@ -188,9 +188,7 @@ export default function Home() {
                     maxWidth: '800px'
                   }}
                 >
-                  Architecting robust backends with <b>Django</b> and crafting
-                  seamless interfaces with <b>React</b>. Based in Turin, Italy,
-                  dedicated to building high-performance digital solutions.
+                  Software engineer with 8+ years building production Python systems across edtech, fintech, and data platforms. Designed and shipped microservice architectures handling concurrent async workloads with FastAPI, Celery, and RabbitMQ. Deployed and operated infrastructure on AWS and Kubernetes in multi-environment production setups.
                 </MotionTypography>
 
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ mb: 8 }}>
