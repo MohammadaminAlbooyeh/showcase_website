@@ -42,7 +42,7 @@ export default function Resume() {
           right: 0,
           bottom: 0,
           zIndex: 0,
-          background: `radial-gradient(circle at var(--x) var(--y), rgba(59, 130, 246, 0.15) 0%, transparent 40%)`,
+          background: `radial-gradient(circle at var(--x) var(--y), rgba(59, 130, 246, 0.25) 0%, transparent 45%)`,
           '--x': xPx,
           '--y': yPx,
         }}
@@ -50,6 +50,17 @@ export default function Resume() {
           pointerEvents: 'none',
         }}
       />
+
+      {/* Decorative background element */}
+      <Box sx={{
+        position: 'absolute',
+        top: '20%',
+        right: '-10%',
+        width: '500px',
+        height: '500px',
+        background: 'radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%)',
+        zIndex: 0
+      }} />
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         {/* Header Section */}
         <Box sx={{ mb: 10, textAlign: 'center' }}>
