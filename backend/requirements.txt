@@ -12,6 +12,7 @@ whitenoise==6.5.0
 psycopg2-binary==2.9.11
 dj-database-url==2.1.0
 django-redis==5.4.0
+redis==5.0.1
 
 # Media Handling
 Pillow==11.0.0
