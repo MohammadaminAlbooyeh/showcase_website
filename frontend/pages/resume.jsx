@@ -2,12 +2,55 @@ import React from 'react';
 import { Box, Container, Typography, Button, Stack, Divider } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
 import Timeline from '../components/Timeline';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+
+const MotionBox = motion.create(Box);
 
 export default function Resume() {
+  // Mouse glow effect
+  const bgX = useMotionValue(0);
+  const bgY = useMotionValue(0);
+  const bgSpringX = useSpring(bgX, { damping: 50 });
+  const bgSpringY = useSpring(bgY, { damping: 50 });
+  const xPx = useTransform(bgSpringX, (val) => `${val}px`);
+  const yPx = useTransform(bgSpringY, (val) => `${val}px`);
+
+  React.useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      bgX.set(e.clientX);
+      bgY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleGlobalMouseMove);
+    return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
+  }, [bgX, bgY]);
+
   return (
-    <Box sx={{ pt: 12, pb: 8, minHeight: '100vh', background: 'var(--color-bg)' }}>
-      <Container maxWidth="lg">
+    <Box sx={{
+      pt: 12,
+      pb: 8,
+      minHeight: '100vh',
+      background: '#0a0a0a',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* Dynamic Mouse Glow Effect */}
+      <MotionBox
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 0,
+          background: `radial-gradient(circle at var(--x) var(--y), rgba(59, 130, 246, 0.15) 0%, transparent 40%)`,
+          '--x': xPx,
+          '--y': yPx,
+        }}
+        sx={{
+          pointerEvents: 'none',
+        }}
+      />
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         {/* Header Section */}
         <Box sx={{ mb: 10, textAlign: 'center' }}>
           <motion.div

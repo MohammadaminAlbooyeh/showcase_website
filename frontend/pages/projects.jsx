@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Grid, Card, CardContent, Typography, Box, Container, Chip, Tooltip, Zoom } from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import LaunchIcon from '@mui/icons-material/Launch';
 import ProjectFilter from '../components/ProjectFilter';
 
@@ -214,6 +214,23 @@ const ProjectCard = ({ project, itemVariants }) => {
 export default function Projects() {
   const [activeTags, setActiveTags] = React.useState([]);
   const [searchQuery, setSearchQuery] = React.useState('');
+
+  // Mouse glow effect
+  const bgX = useMotionValue(0);
+  const bgY = useMotionValue(0);
+  const bgSpringX = useSpring(bgX, { damping: 50 });
+  const bgSpringY = useSpring(bgY, { damping: 50 });
+  const xPx = useTransform(bgSpringX, (val) => `${val}px`);
+  const yPx = useTransform(bgSpringY, (val) => `${val}px`);
+
+  React.useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      bgX.set(e.clientX);
+      bgY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleGlobalMouseMove);
+    return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
+  }, [bgX, bgY]);
 
   const projects = [
     {
@@ -444,12 +461,32 @@ export default function Projects() {
   };
 
   return (
-    <Box sx={{ 
-      py: { xs: 6, md: 10 }, 
+    <Box sx={{
+      py: { xs: 6, md: 10 },
       minHeight: '100vh',
-      background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
+      background: '#0a0a0a',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <Container maxWidth={false} sx={{ px: { xs: 2, md: 8 } }}>
+      {/* Dynamic Mouse Glow Effect */}
+      <MotionBox
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 0,
+          background: `radial-gradient(circle at var(--x) var(--y), rgba(59, 130, 246, 0.15) 0%, transparent 40%)`,
+          '--x': xPx,
+          '--y': yPx,
+        }}
+        sx={{
+          pointerEvents: 'none',
+        }}
+      />
+
+      <Container maxWidth={false} sx={{ px: { xs: 2, md: 8 }, position: 'relative', zIndex: 1 }}>
         <Box sx={{ mb: 8, textAlign: 'center' }}>
           <MotionTypography
             initial={{ opacity: 0, y: -20 }}
