@@ -234,6 +234,106 @@ export default function Projects() {
 
   const projects = [
     {
+      id: 20,
+      title: 'LangGraph Workflow Engine',
+      description: 'A powerful workflow engine built with LangGraph for orchestrating complex multi-step LLM pipelines with state management and branching logic.',
+      color: '#7c3aed',
+      link: '#',
+      icon: '🔀',
+      tags: ['Python', 'LangGraph', 'LLM', 'Workflow'],
+      video: '/videos/langgraph-workflow.mp4'
+    },
+    {
+      id: 21,
+      title: 'LangChain Document QA',
+      description: 'A document question-answering system leveraging LangChain and RAG to extract precise answers from large document collections.',
+      color: '#2563eb',
+      link: '#',
+      icon: '📄',
+      tags: ['Python', 'LangChain', 'RAG', 'NLP'],
+      video: '/videos/langchain-doc-qa.mp4'
+    },
+    {
+      id: 22,
+      title: 'Microservices Orchestrator',
+      description: 'An orchestrator for managing distributed microservices with service discovery, load balancing, fault tolerance, and inter-service communication.',
+      color: '#0891b2',
+      link: '#',
+      icon: '⚙️',
+      tags: ['Python', 'Microservices', 'Orchestration', 'Distributed Systems'],
+      video: '/videos/microservices-orch.mp4'
+    },
+    {
+      id: 23,
+      title: 'End-to-End Income Prediction',
+      description: 'A complete machine learning pipeline for predicting income levels using ensemble methods, feature engineering, and model deployment.',
+      color: '#059669',
+      link: '#',
+      icon: '📈',
+      tags: ['Python', 'ML', 'Prediction', 'Data Processing'],
+      video: '/videos/income-prediction.mp4'
+    },
+    {
+      id: 24,
+      title: 'Recommendation Engine',
+      description: 'A collaborative and content-based recommendation system that delivers personalized suggestions using matrix factorization and similarity metrics.',
+      color: '#dc2626',
+      link: '#',
+      icon: '🎯',
+      tags: ['Python', 'ML', 'Recommendation System', 'Data Processing'],
+      video: '/videos/recommendation-engine.mp4'
+    },
+    {
+      id: 25,
+      title: 'API Gateway with Rate Limiting',
+      description: 'A high-performance API gateway featuring token bucket rate limiting, request routing, authentication, and usage analytics.',
+      color: '#d97706',
+      link: '#',
+      icon: '🚪',
+      tags: ['Python', 'API', 'Rate Limiting', 'Distributed Systems'],
+      video: '/videos/api-gateway.mp4'
+    },
+    {
+      id: 26,
+      title: 'Distributed Task Queue',
+      description: 'A distributed task queue system with priority scheduling, worker scaling, result storage, and real-time task monitoring via Redis.',
+      color: '#9333ea',
+      link: '#',
+      icon: '📋',
+      tags: ['Python', 'Distributed Systems', 'Task Queue', 'Redis'],
+      video: '/videos/distributed-queue.mp4'
+    },
+    {
+      id: 27,
+      title: 'Real-Time Chat Application',
+      description: 'A scalable real-time chat application with WebSocket support, message persistence, typing indicators, and multi-room functionality.',
+      color: '#0d9488',
+      link: '#',
+      icon: '💬',
+      tags: ['Python', 'WebSocket', 'Real-time', 'Chat'],
+      video: '/videos/real-time-chat.mp4'
+    },
+    {
+      id: 28,
+      title: 'Real-Time Notification System',
+      description: 'A push notification system delivering real-time alerts via WebSocket connections with delivery guarantees and user preference management.',
+      color: '#6366f1',
+      link: '#',
+      icon: '🔔',
+      tags: ['Python', 'WebSocket', 'Real-time', 'Notifications'],
+      video: '/videos/notification-system.mp4'
+    },
+    {
+      id: 29,
+      title: 'Order Processing System',
+      description: 'An event-driven order processing pipeline handling validation, payment, inventory, and shipping with fault-tolerant state transitions.',
+      color: '#e11d48',
+      link: '#',
+      icon: '📦',
+      tags: ['Python', 'Order Processing', 'E-commerce', 'Distributed Systems'],
+      video: '/videos/order-processing.mp4'
+    },
+    {
       id: 0,
       title: 'Air Quality Index Map',
       description: 'An interactive map visualizing real-time air quality (AQI) data across locations, with filters and color-coded overlays.',

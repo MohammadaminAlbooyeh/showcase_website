@@ -6,80 +6,83 @@ import { alpha } from '@mui/material/styles';
 
 const timelineData = [
   {
-    year: 'Jul 2024 – Dec 2025',
-    title: 'Software Engineer (Python)',
-    company: 'Quera · Tehran, Iran · Remote',
-    description: 'Architected async task pipeline using FastAPI, Celery, and RabbitMQ to process high-volume background jobs; decoupled ingestion from execution across distributed workers.',
+    year: 'Dec 2025 – Present',
+    title: 'Freelance Python Software Engineer',
+    company: 'Independent · Remote',
+    description: 'Architected distributed task queues, real-time applications, and RAG-powered chatbots with 95%+ relevance on domain queries.',
     responsibilities: [
-      'Architected async task pipeline using FastAPI, Celery, and RabbitMQ to process high-volume background jobs; decoupled ingestion from execution across distributed workers, eliminating blocking bottlenecks under concurrent load.',
-      'Owned cloud infrastructure across AWS and DigitalOcean: containerised all services with Docker, orchestrated with Kubernetes, and automated deployments via GitHub Actions and GitLab CI — reducing manual release steps to zero.',
-      'Deployed Elasticsearch for full-text search across the platform; tuned PostgreSQL query execution plans and Redis caching strategies to cut read latency under peak traffic.',
-      'Ran weekly architecture reviews and served as primary code reviewer for a 5-engineer team; introduced PR conventions that reduced post-merge regressions.'
+      'Built distributed task queue with FastAPI, Celery, and RabbitMQ for 1000+ concurrent tasks with 40% latency reduction.',
+      'Developed real-time chat app with WebSocket supporting 500+ simultaneous users with multi-room presence.',
+      'Built RAG-powered chatbot using LLM embeddings and semantic search for 95%+ relevance on domain queries.',
+      'Managed full lifecycle of 5+ Python projects with 80%+ test coverage and automated CI/CD.'
     ],
-    skills: ['Python 3', 'FastAPI', 'Django', 'PostgreSQL', 'Redis', 'Elasticsearch', 'Celery', 'RabbitMQ', 'Docker', 'Kubernetes', 'AWS', 'DigitalOcean', 'GitHub Actions'],
+    skills: ['Python 3.10+', 'FastAPI', 'Celery', 'WebSockets', 'PostgreSQL', 'Redis', 'LangChain', 'Docker', 'AWS'],
     color: '#60a5fa'
   },
   {
-    year: 'Nov 2022 – Jun 2024',
-    title: 'Software Engineer (Python)',
-    company: 'Rahpooyan Gostar · Tehran, Iran · Remote',
-    description: 'Rebuilt backend of internal service platform from a monolith into independently deployable REST services, improving deployment cadence and isolating failure impact.',
+    year: 'Jul 2024 – Dec 2025',
+    title: 'Software Engineer',
+    company: 'Quera · Tehran, Iran · Remote',
+    description: 'Architected async task pipelines, owned cloud infrastructure on AWS/DigitalOcean, and led code reviews for a 5-engineer team.',
     responsibilities: [
-      'Rebuilt backend of internal service platform from a monolith into independently deployable REST services, improving deployment cadence and isolating failure impact across teams.',
-      'Designed ETL workflows integrating PostgreSQL, MongoDB, and Redis to consolidate operational data from three source systems into a unified reporting layer.',
-      'Profiled and resolved slow queries across PostgreSQL and MongoDB under production load; introduced targeted indexing that cleared throughput bottlenecks flagged by ops.',
-      'Led weekly technical reviews and brought two junior developers through their first solo production deployments.'
+      'Built async task pipeline with FastAPI, Celery, and RabbitMQ for high-volume background jobs.',
+      'Managed cloud infrastructure on AWS and DigitalOcean with Docker, Kubernetes, and automated CI/CD.',
+      'Deployed Elasticsearch and optimized PostgreSQL/Redis for reduced read latency under peak traffic.',
+      'Led weekly architecture reviews and introduced PR conventions that reduced regressions.'
+    ],
+    skills: ['Python 3', 'FastAPI', 'Django', 'PostgreSQL', 'Redis', 'Elasticsearch', 'Celery', 'RabbitMQ', 'Docker', 'Kubernetes', 'AWS', 'DigitalOcean', 'GitHub Actions'],
+    color: '#a78bfa'
+  },
+  {
+    year: 'Nov 2022 – Jun 2024',
+    title: 'Software Engineer',
+    company: 'Rahpooyan Gostar · Tehran, Iran · Remote',
+    description: 'Refactored monolith into microservices, designed ETL workflows, and mentored junior developers.',
+    responsibilities: [
+      'Refactored monolith into independently deployable REST services, improving deployment cadence.',
+      'Built ETL pipelines integrating PostgreSQL, MongoDB, and Redis for unified reporting.',
+      'Optimized slow queries with targeted indexing under production load.',
+      'Mentored two junior developers through their first production deployments.'
     ],
     skills: ['Python 3', 'Django', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Redis', 'Docker', 'Linux', 'CI/CD'],
-    color: '#a78bfa'
+    color: '#34d399'
   },
   {
     year: 'Mar 2018 – Dec 2019',
     title: 'Python Software Engineer',
     company: 'Technoarch Softwares · Tehran, Iran',
-    description: 'Built RESTful APIs and microservice components with Django and Flask for client-facing products.',
+    description: 'Built RESTful APIs and ETL automation using Django, Flask, and Docker.',
     responsibilities: [
-      'Built RESTful APIs and microservice components with Django and Flask for client-facing products.',
-      'Wrote ETL automation scripts to extract, clean, and load data across PostgreSQL, MySQL, and MongoDB, replacing previously manual migration steps done in spreadsheets.',
-      'Introduced Docker-based local development environments and contributed to CI/CD pipeline configuration for automated test execution on every push.'
+      'Developed REST APIs and microservices with Django and Flask for client-facing products.',
+      'Automated ETL data migration across PostgreSQL, MySQL, and MongoDB.',
+      'Introduced Docker dev environments and CI/CD pipelines for automated testing.'
     ],
     skills: ['Python', 'Django', 'Flask', 'PostgreSQL', 'MySQL', 'MongoDB', 'Docker', 'Git'],
-    color: '#34d399'
+    color: '#fbbf24'
   },
   {
     year: 'Oct 2016 – Feb 2018',
     title: 'Python Developer',
     company: 'Pishgaman Fanavari Etelaat (ICT) · Tehran, Iran',
-    description: 'Developed REST APIs with Flask using OOP design patterns on an Agile team shipping fortnightly releases.',
+    description: 'Developed REST APIs with Flask and maintained 80%+ test coverage using Pytest.',
     responsibilities: [
-      'Developed REST APIs with Flask using OOP design patterns on an Agile team shipping fortnightly releases.',
-      'Wrote unit and integration tests with Pytest; maintained test coverage above 80% on core API modules.',
-      'Managed source control workflows via GitLab and containerised development environments with Docker.'
+      'Built REST APIs with Flask using OOP design patterns on an Agile team.',
+      'Maintained 80%+ test coverage with Pytest on core API modules.',
+      'Managed GitLab workflows and Docker-based development environments.'
     ],
-    skills: ['Python 3', 'Flask', 'PostgreSQL', 'Docker', 'Pytest', 'GitLab'],
-    color: '#fbbf24'
-  },
-  {
-    year: 'Aug 2014 – Sep 2016',
-    title: 'Data Engineer (Junior)',
-    company: 'Rahkaran Information Systems · Tehran, Iran',
-    description: 'Built ETL pipelines with Python (pandas, numpy) to extract and load operational datasets into PostgreSQL and MySQL, automating reporting tasks previously handled manually.',
-    responsibilities: [
-      'Built ETL pipelines with Python (pandas, numpy) to extract and load operational datasets into PostgreSQL and MySQL, automating reporting tasks previously handled manually.',
-      'Cleaned and normalised data from inconsistent source formats, producing structured outputs consumed by business operations teams.'
-    ],
-    skills: ['Python', 'pandas', 'numpy', 'SQL', 'PostgreSQL', 'MySQL', 'Git'],
+    skills: ['Python 3', 'Django', 'Flask', 'PostgreSQL', 'Docker', 'Pytest', 'Git'],
     color: '#f87171'
   },
   {
-    year: 'Sep 2012 – Jun 2014',
-    title: 'Field / Mud Engineer',
-    company: 'National Iranian Drilling Company (NIDC) · Ahvaz, Iran',
-    description: 'Monitored drilling fluid systems on active rigs and logged operational metrics into SQL-backed reporting tools.',
+    year: 'Aug 2014 – Sep 2016',
+    title: 'Data Engineer',
+    company: 'Rahkaran Information Systems · Tehran, Iran',
+    description: 'Built ETL pipelines with Python to automate reporting and data processing.',
     responsibilities: [
-      'Monitored drilling fluid systems on active rigs and logged operational metrics into SQL-backed reporting tools; maintained data accuracy under high-pressure field conditions.'
+      'Developed ETL pipelines with pandas and numpy for operational data processing.',
+      'Cleaned and normalized data from inconsistent source formats for business operations.'
     ],
-    skills: ['Excel', 'AutoCAD', 'SQL'],
+    skills: ['Python', 'pandas', 'numpy', 'ETL', 'SQL', 'PostgreSQL', 'MySQL', 'MongoDB', 'Git'],
     color: '#fb923c'
   }
 ];
