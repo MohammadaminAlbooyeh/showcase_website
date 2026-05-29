@@ -171,7 +171,7 @@ export default function Home() {
                   }}>
                     <Typewriter texts={[
                       "Hi, I'm Amin Albooyeh,| a Software Engineer",
-                      "I have +8 Years of| Professional Experience"
+                      "I have +10 Years of| Professional Experience"
                     ]} />
                   </Box>
                 </MotionTypography>
@@ -188,7 +188,7 @@ export default function Home() {
                     maxWidth: '800px'
                   }}
                 >
-                  Software engineer with 8+ years building production Python systems across edtech, fintech, and data platforms. Designed and shipped microservice architectures handling concurrent async workloads with FastAPI, Celery, and RabbitMQ. Deployed and operated infrastructure on AWS and Kubernetes in multi-environment production setups.
+                  Software engineer with 10+ years building production Python systems across backend engineering, distributed architectures, and AI-powered applications. Expert in FastAPI microservices, async pipelines with Celery and RabbitMQ, and increasingly LLM-based systems: RAG pipelines, embedding search, and AI agent workflows using LangChain and OpenAI APIs. Experienced with cloud infrastructure on AWS and Kubernetes, database optimization, and architecture reviews.
                 </MotionTypography>
 
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ mb: 8 }}>
@@ -290,7 +290,7 @@ export default function Home() {
                     boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
                   }}
                 >
-                  <Typography variant="h5" sx={{ color: '#fbbf24', fontWeight: 900 }}>8+</Typography>
+                  <Typography variant="h5" sx={{ color: '#fbbf24', fontWeight: 900 }}>10+</Typography>
                   <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>Years Exp.</Typography>
                 </Box>
 
