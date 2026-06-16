@@ -26,7 +26,7 @@ export default function Footer() {
         >
           {[
             { icon: <GitHubIcon />, href: 'https://github.com/MohammadaminAlbooyeh' },
-            { icon: <LinkedInIcon />, href: '#' },
+            { icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/amin-albooyeh-95a541176/' },
             { icon: <EmailIcon />, href: 'mailto:hello@amin.dev' },
           ].map((social, idx) => (
             <IconButton
