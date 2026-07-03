@@ -85,28 +85,52 @@ export default function Resume() {
               A combination of academic foundation and professional experience in building modern digital solutions.
             </Typography>
             
-            <Button
-              variant="contained"
-              startIcon={<DownloadIcon />}
-              href="/resume.pdf"
-              target="_blank"
-              sx={{
-                background: 'linear-gradient(45deg, #60a5fa 30%, #3b82f6 90%)',
-                color: '#fff',
-                px: 4,
-                py: 1.5,
-                borderRadius: '12px',
-                fontWeight: 700,
-                textTransform: 'none',
-                fontSize: '1.1rem',
-                boxShadow: '0 4px 14px 0 rgba(0, 118, 255, 0.39)',
-                '&:hover': {
-                  background: 'linear-gradient(45deg, #3b82f6 30%, #2563eb 90%)',
-                }
-              }}
-            >
-              Download Full CV
-            </Button>
+            <Stack direction={{ xs: 'column', sm: 'row' }} gap={2} justifyContent="center">
+              <Button
+                variant="contained"
+                startIcon={<DownloadIcon />}
+                href="/Amin_Albooyeh_CV.pdf"
+                download="Amin_Albooyeh_CV.pdf"
+                sx={{
+                  background: 'linear-gradient(45deg, #60a5fa 30%, #3b82f6 90%)',
+                  color: '#fff',
+                  px: 4,
+                  py: 1.5,
+                  borderRadius: '12px',
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  fontSize: '1.1rem',
+                  boxShadow: '0 4px 14px 0 rgba(0, 118, 255, 0.39)',
+                  '&:hover': {
+                    background: 'linear-gradient(45deg, #3b82f6 30%, #2563eb 90%)',
+                  }
+                }}
+              >
+                Download CV
+              </Button>
+              <Button
+                variant="outlined"
+                startIcon={<DownloadIcon />}
+                href="/resume.pdf"
+                target="_blank"
+                sx={{
+                  color: '#60a5fa',
+                  borderColor: '#60a5fa',
+                  px: 4,
+                  py: 1.5,
+                  borderRadius: '12px',
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  fontSize: '1.1rem',
+                  '&:hover': {
+                    background: 'rgba(96, 165, 250, 0.1)',
+                    borderColor: '#3b82f6',
+                  }
+                }}
+              >
+                View Resume
+              </Button>
+            </Stack>
           </motion.div>
         </Box>
 
