@@ -1,3 +1,13 @@
+# Next.js build output
+.next/
+
+# Virtual environments
+venv/
+venv_new/
+ENV/
+env/
+.venv
+
 # Logs
 logs
 *.log
@@ -47,12 +57,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# Virtual environments
-venv/
-ENV/
-env/
-.venv
 
 # Django
 *.sqlite3
